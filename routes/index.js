@@ -11,6 +11,13 @@ router.get('/newItem', function(req,res){
   res.render('newItem',{title: 'اضافة صنف'});
 });
 
+
+router.get('/addItemm', function(req,res){
+  res.render('addItemm',{title: 'addItemm'});
+});
+
+
+
 router.post('/addItem', function(req,res){
   itemMgr.addItem(req.body,function(result){
     console.log(result);
