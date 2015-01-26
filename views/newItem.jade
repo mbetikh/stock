@@ -1,0 +1,7 @@
+extends layout
+
+block content
+  form(method="POST",action="addItem" name="newItem")
+    input(type="text", name="name")
+    input(type="text", name="quantity")
+    input(type="submit", value="submit")
