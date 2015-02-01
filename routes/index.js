@@ -13,7 +13,7 @@ router.get('/newItem', function(req,res){
 
 
 router.get('/addItemm', function(req,res){
-  res.render('addItemm',{title: 'addItemm'});
+  res.render('addItemm',{title: 'أضافة صنف'});
 });
 
 
