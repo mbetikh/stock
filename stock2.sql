@@ -2,27 +2,28 @@ SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
-CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci ;
-USE `mydb` ;
 
 -- -----------------------------------------------------
--- Table `mydb`.`item_type`
+-- Table `stock`.`item_type`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`item_type` ;
+DROP TABLE IF EXISTS `stock`.`item_type` ;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`item_type` (
+CREATE TABLE IF NOT EXISTS `stock`.`item_type` (
   `iditem_type` INT NOT NULL,
-  `type` VARCHAR(45) NULL,
+  `type` VARCHAR(250) NULL,
+  `create_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `update_time` DATETIME NULL,
+  `deleted` TINYINT NULL DEFAULT 1,
   PRIMARY KEY (`iditem_type`))
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`item`
+-- Table `stock`.`item`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`item` ;
+DROP TABLE IF EXISTS `stock`.`item` ;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`item` (
+CREATE TABLE IF NOT EXISTS `stock`.`item` (
   `iditem` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NULL,
   `serial_number` VARCHAR(250) NULL,
@@ -30,59 +31,67 @@ CREATE TABLE IF NOT EXISTS `mydb`.`item` (
   `remainder` INT NULL,
   `description` VARCHAR(250) NULL,
   `item_type_iditem_type` INT NOT NULL,
+  `create_time` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+  `update_time` TIMESTAMP NULL,
+  `deleted` TINYINT NULL,
   PRIMARY KEY (`iditem`),
   INDEX `fk_item_item_type1_idx` (`item_type_iditem_type` ASC),
   CONSTRAINT `fk_item_item_type1`
     FOREIGN KEY (`item_type_iditem_type`)
-    REFERENCES `mydb`.`item_type` (`iditem_type`)
+    REFERENCES `stock`.`item_type` (`iditem_type`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`departments`
+-- Table `stock`.`department`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`departments` ;
+DROP TABLE IF EXISTS `stock`.`department` ;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`departments` (
+CREATE TABLE IF NOT EXISTS `stock`.`department` (
   `iddepartments` INT NOT NULL,
-  `namel` VARCHAR(45) NULL,
+  `namel` VARCHAR(250) NULL,
+  `create_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `update_time` DATETIME NULL,
+  `deleted` TINYINT NULL,
   PRIMARY KEY (`iddepartments`))
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`Employ`
+-- Table `stock`.`employee`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`Employ` ;
+DROP TABLE IF EXISTS `stock`.`employee` ;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`Employ` (
-  `idlogin` INT NOT NULL,
-  `name` VARCHAR(45) NULL,
-  `gender` VARCHAR(45) NULL,
-  `email` VARCHAR(45) NULL,
-  `username` VARCHAR(45) NULL,
-  `password` VARCHAR(45) NULL,
+CREATE TABLE IF NOT EXISTS `stock`.`employee` (
+  `idemployee` INT NOT NULL,
+  `name` VARCHAR(250) NULL,
+  `email` VARCHAR(250) NULL,
+  `username` VARCHAR(500) NULL,
+  `password` VARCHAR(500) NULL,
   `departments_iddepartments` INT NOT NULL,
   `phoneNumber` VARCHAR(45) NULL,
   `departments_iddepartments1` INT NOT NULL,
-  PRIMARY KEY (`idlogin`),
+  `create_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `update_time` DATETIME NULL,
+  `deleted` TINYINT NULL DEFAULT 1,
+  PRIMARY KEY (`idemployee`),
   INDEX `fk_Employ_departments1_idx` (`departments_iddepartments1` ASC),
   CONSTRAINT `fk_Employ_departments1`
     FOREIGN KEY (`departments_iddepartments1`)
-    REFERENCES `mydb`.`departments` (`iddepartments`)
+    REFERENCES `stock`.`department` (`iddepartments`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`orders`
+-- Table `stock`.`order`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`orders` ;
+DROP TABLE IF EXISTS `stock`.`order` ;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`orders` (
+CREATE TABLE IF NOT EXISTS `stock`.`order` (
   `idtable1` INT NOT NULL AUTO_INCREMENT,
   `quantity` INT NULL,
   `date` DATE NULL,
@@ -90,55 +99,59 @@ CREATE TABLE IF NOT EXISTS `mydb`.`orders` (
   `departments_iddepartments` INT NOT NULL,
   `requestEmploye` INT NOT NULL,
   `Employ_stocks` INT NOT NULL,
+  `create_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `update_time` DATETIME NULL,
+  `deleted` TINYINT NULL DEFAULT 1,
   PRIMARY KEY (`idtable1`),
   INDEX `fk_orders_Employ1_idx` (`requestEmploye` ASC),
   INDEX `fk_orders_Employ2_idx` (`Employ_stocks` ASC),
   CONSTRAINT `fk_orders_Employ1`
     FOREIGN KEY (`requestEmploye`)
-    REFERENCES `mydb`.`Employ` (`idlogin`)
+    REFERENCES `stock`.`employee` (`idemployee`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_orders_Employ2`
     FOREIGN KEY (`Employ_stocks`)
-    REFERENCES `mydb`.`Employ` (`idlogin`)
+    REFERENCES `stock`.`employee` (`idemployee`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`supplier`
+-- Table `stock`.`supplier`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`supplier` ;
+DROP TABLE IF EXISTS `stock`.`supplier` ;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`supplier` (
-  `idelmowared` INT NOT NULL,
-  `name` VARCHAR(45) NULL,
+CREATE TABLE IF NOT EXISTS `stock`.`supplier` (
+  `idsupplier` INT NOT NULL,
+  `name` VARCHAR(250) NULL,
   `quantity` VARCHAR(45) NULL,
   `companyName` VARCHAR(45) NULL,
-  PRIMARY KEY (`idelmowared`))
+  `deleted` TINYINT NULL,
+  PRIMARY KEY (`idsupplier`))
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`supplier_has_item`
+-- Table `stock`.`supplier_has_item`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`supplier_has_item` ;
+DROP TABLE IF EXISTS `stock`.`supplier_has_item` ;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`supplier_has_item` (
-  `idsupplier` INT NOT NULL,
-  `iditem` INT NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY (`iditem`, `idsupplier`),
-  INDEX `fk_Elmowared_has_item_item1_idx` (`iditem` ASC),
-  INDEX `fk_Elmowared_has_item_Elmowared1_idx` (`idsupplier` ASC),
-  CONSTRAINT `fk_Elmowared_has_item_Elmowared1`
-    FOREIGN KEY (`idsupplier`)
-    REFERENCES `mydb`.`supplier` (`idelmowared`)
+CREATE TABLE IF NOT EXISTS `stock`.`supplier_has_item` (
+  `supplier_idsupplier` INT NOT NULL,
+  `item_iditem` INT NOT NULL,
+  PRIMARY KEY (`supplier_idsupplier`, `item_iditem`),
+  INDEX `fk_supplier_has_item_item1_idx` (`item_iditem` ASC),
+  INDEX `fk_supplier_has_item_supplier1_idx` (`supplier_idsupplier` ASC),
+  CONSTRAINT `fk_supplier_has_item_supplier1`
+    FOREIGN KEY (`supplier_idsupplier`)
+    REFERENCES `stock`.`supplier` (`idsupplier`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Elmowared_has_item_item1`
-    FOREIGN KEY (`iditem`)
-    REFERENCES `mydb`.`item` (`iditem`)
+  CONSTRAINT `fk_supplier_has_item_item1`
+    FOREIGN KEY (`item_iditem`)
+    REFERENCES `stock`.`item` (`iditem`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
