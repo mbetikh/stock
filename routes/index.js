@@ -16,11 +16,23 @@ router.get('/login', function(req,res){
   res.render('login',{title: 'دخول'});
 });
 
+
+router.get('/addItemm', function(req,res){
+  res.render('addItemm',{title: 'أضافة صنف'});
+});
+
+
+router.get('/AddEmployee', function(req,res){
+  res.render('AddEmployee',{title: 'تـــسجيل موظف'});
+});
+
+
 router.post('/addItem', function(req,res){
   itemMgr.addItem(req.body,function(result){
     console.log(result);
 
   });
 });
+
 
 module.exports = router;
