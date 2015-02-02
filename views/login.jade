@@ -1,0 +1,16 @@
+extends layout
+
+block content
+  html.full
+    .row
+      .panel.primary
+        .col-md-4.col-md-offset-4.text-right
+          form(method="POST",action="/users/login" name="login")
+            .form-group
+            label(for='exampleInputEmail1') اسم المستخدم    
+            input#exampleInputEmail1.form-control(name='username' ,type='email', placeholder='اسم المستخدم', dir='rtl') 
+            .form-group
+            label(for='exampleInputPassword1') كلمة المرور
+            input#exampleInputPassword1.form-control(name='password' ,type='password', placeholder='كلمة المرور', dir='rtl')
+            br
+            button.btn.btn-primary(type='submit') دخول

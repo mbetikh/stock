@@ -1,56 +1,165 @@
--- phpMyAdmin SQL Dump
--- version 4.2.3
--- http://www.phpmyadmin.net
---
--- Host: localhost
--- Generation Time: Jan 26, 2015 at 10:15 AM
--- Server version: 5.6.19
--- PHP Version: 5.4.24
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
+CREATE SCHEMA IF NOT EXISTS `stock` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci ;
+USE `stock` ;
+
+-- -----------------------------------------------------
+-- Table `stock`.`item_type`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `stock`.`item_type` ;
+
+CREATE TABLE IF NOT EXISTS `stock`.`item_type` (
+  `iditem_type` INT NOT NULL AUTO_INCREMENT,
+  `type` VARCHAR(250) NULL,
+  `create_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `update_time` DATETIME NULL,
+  `deleted` TINYINT NULL DEFAULT 1,
+  PRIMARY KEY (`iditem_type`))
+ENGINE = InnoDB;
 
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+-- -----------------------------------------------------
+-- Table `stock`.`item`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `stock`.`item` ;
 
---
--- Database: `stock`
---
+CREATE TABLE IF NOT EXISTS `stock`.`item` (
+  `iditem` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) NULL,
+  `serial_number` VARCHAR(250) NULL,
+  `quantity` INT NULL,
+  `remainder` INT NULL,
+  `description` VARCHAR(250) NULL,
+  `item_type_iditem_type` INT NOT NULL,
+  `create_time` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+  `update_time` TIMESTAMP NULL,
+  `deleted` TINYINT NULL,
+  PRIMARY KEY (`iditem`),
+  INDEX `fk_item_item_type1_idx` (`item_type_iditem_type` ASC),
+  CONSTRAINT `fk_item_item_type1`
+    FOREIGN KEY (`item_type_iditem_type`)
+    REFERENCES `stock`.`item_type` (`iditem_type`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
 
--- --------------------------------------------------------
 
---
--- Table structure for table `item`
---
+-- -----------------------------------------------------
+-- Table `stock`.`department`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `stock`.`department` ;
 
-CREATE TABLE IF NOT EXISTS `item` (
-`iditem` int(11) NOT NULL,
-  `name` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
-  `quantity` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+CREATE TABLE IF NOT EXISTS `stock`.`department` (
+  `iddepartments` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(250) NULL,
+  `create_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `update_time` DATETIME NULL,
+  `deleted` TINYINT NULL,
+  PRIMARY KEY (`iddepartments`))
+ENGINE = InnoDB;
 
---
--- Indexes for dumped tables
---
 
---
--- Indexes for table `item`
---
-ALTER TABLE `item`
- ADD PRIMARY KEY (`iditem`);
+-- -----------------------------------------------------
+-- Table `stock`.`employee`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `stock`.`employee` ;
 
---
--- AUTO_INCREMENT for dumped tables
---
+CREATE TABLE IF NOT EXISTS `stock`.`employee` (
+  `idemployee` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(250) NULL,
+  `email` VARCHAR(250) NULL,
+  `username` VARCHAR(500) NULL,
+  `password` VARCHAR(500) NULL,
+  `phoneNumber` VARCHAR(45) NULL,
+  `iddepartment` INT NOT NULL,
+  `create_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `update_time` DATETIME NULL,
+  `deleted` TINYINT NULL DEFAULT 1,
+  `salt` VARCHAR(500) NULL,
+  `level` TINYINT NULL,
+  PRIMARY KEY (`idemployee`),
+  INDEX `fk_Employ_departments1_idx` (`iddepartment` ASC),
+  CONSTRAINT `fk_Employ_departments1`
+    FOREIGN KEY (`iddepartment`)
+    REFERENCES `stock`.`department` (`iddepartments`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
 
---
--- AUTO_INCREMENT for table `item`
---
-ALTER TABLE `item`
-MODIFY `iditem` int(11) NOT NULL AUTO_INCREMENT;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+-- -----------------------------------------------------
+-- Table `stock`.`order`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `stock`.`order` ;
+
+CREATE TABLE IF NOT EXISTS `stock`.`order` (
+  `idtable1` INT NOT NULL AUTO_INCREMENT,
+  `quantity` INT NULL,
+  `date` DATE NULL,
+  `discription` VARCHAR(45) NULL,
+  `departments_iddepartments` INT NOT NULL,
+  `requestEmploye` INT NOT NULL,
+  `Employ_stocks` INT NOT NULL,
+  `create_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `update_time` DATETIME NULL,
+  `deleted` TINYINT NULL DEFAULT 1,
+  PRIMARY KEY (`idtable1`),
+  INDEX `fk_orders_Employ1_idx` (`requestEmploye` ASC),
+  INDEX `fk_orders_Employ2_idx` (`Employ_stocks` ASC),
+  CONSTRAINT `fk_orders_Employ1`
+    FOREIGN KEY (`requestEmploye`)
+    REFERENCES `stock`.`employee` (`idemployee`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_orders_Employ2`
+    FOREIGN KEY (`Employ_stocks`)
+    REFERENCES `stock`.`employee` (`idemployee`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `stock`.`supplier`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `stock`.`supplier` ;
+
+CREATE TABLE IF NOT EXISTS `stock`.`supplier` (
+  `idsupplier` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(250) NULL,
+  `quantity` VARCHAR(45) NULL,
+  `companyName` VARCHAR(45) NULL,
+  `deleted` TINYINT NULL,
+  PRIMARY KEY (`idsupplier`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `stock`.`supplier_has_item`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `stock`.`supplier_has_item` ;
+
+CREATE TABLE IF NOT EXISTS `stock`.`supplier_has_item` (
+  `supplier_idsupplier` INT NOT NULL,
+  `item_iditem` INT NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`item_iditem`, `supplier_idsupplier`),
+  INDEX `fk_supplier_has_item_item1_idx` (`item_iditem` ASC),
+  INDEX `fk_supplier_has_item_supplier1_idx` (`supplier_idsupplier` ASC),
+  CONSTRAINT `fk_supplier_has_item_supplier1`
+    FOREIGN KEY (`supplier_idsupplier`)
+    REFERENCES `stock`.`supplier` (`idsupplier`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_supplier_has_item_item1`
+    FOREIGN KEY (`item_iditem`)
+    REFERENCES `stock`.`item` (`iditem`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;

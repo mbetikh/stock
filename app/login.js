@@ -1,25 +1,22 @@
 var mysqlMgr = require('./mysql').mysqlMgr,
-  util=require('util');
+    util=require('util');
+   
 
-
-
-exports.itemMgr = {
+exports.loginMgr = {
 /* Add item */
-  addItem : function(body,cb){
+  userLogin : function(body,cb){
     console.log(body);
     mysqlMgr.connect(function (conn) {
-      conn.query('INSERT INTO `item` SET ?',  body,  function(err, result) {
+      conn.query('SELECT * FROM `users` WHERE username=? and password = ?',  [body.username,body.password],  function(err, result) {
         conn.release();
         if(err) {
           util.log(err);
         } else {
-          cb(result.insertId)
+          cb(result);
         }
-
       });
     });
   }
-
 }
 
 
