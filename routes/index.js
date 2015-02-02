@@ -16,6 +16,14 @@ router.get('/addItemm', function(req,res){
   res.render('addItemm',{title: 'أضافة صنف'});
 });
 
+router.get('/login', function(req,res){
+  res.render('login',{title: 'أضافة صنف'});
+});
+
+router.get('/AddEmployee', function(req,res){
+  res.render('AddEmployee',{title: 'تـــسجيل موظف'});
+});
+
 
 
 router.post('/addItem', function(req,res){
@@ -24,5 +32,11 @@ router.post('/addItem', function(req,res){
 
   });
 });
+
+
+
+
+
+
 
 module.exports = router;
