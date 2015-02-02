@@ -5,7 +5,7 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res) {
-  res.redirect('/department');
+  res.render('department', { title: 'Express' });
 });
 
 router.get('/newItem', function(req,res){
@@ -26,6 +26,9 @@ router.get('/AddEmployee', function(req,res){
   res.render('AddEmployee',{title: 'تـــسجيل موظف'});
 });
 
+router.get('/adminPage', function(req,res){
+  res.render('adminPage',{title: 'adminPage'});
+})
 
 router.post('/addItem', function(req,res){
   itemMgr.addItem(req.body,function(result){

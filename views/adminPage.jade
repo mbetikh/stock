@@ -1,0 +1,59 @@
+extends layout
+block content 
+  html
+  body
+    #side-menu.move-me
+      hr.hr-set
+      span.logo-text COMPANY NAME   
+      i.menu-close-icon.glyphicon.glyphicon-align-justify
+      hr.hr-set-two
+      ul
+        li
+          a(href='#')
+            i.glyphicon.glyphicon-home
+            |     Home
+        li
+          a(href='#')
+            i.glyphicon.glyphicon-th
+            |   Features
+        li
+          a(href='#')
+            i.glyphicon.glyphicon-time
+            |   Pricing
+        li
+          a(href='#')
+            i.glyphicon.glyphicon-user
+            |   Developer
+        li
+          a(href='#')
+            i.glyphicon.glyphicon-map-marker
+            |  Contact
+      .intro-txt
+        br
+        i
+          strong Company Ovewview 
+        hr
+        p
+          | Nunc at viverra risus. In euismod quam ac dictum varius. 
+          | Nunc at viverra risus. 
+          | In euismod quam ac dictum varius.
+          br
+          a(href='http://www.binarytheme.com/', target='_blank', style='text-decoration:none;color:#000') by : binarytheme 
+    // SIDE MENU SECTION END
+    .container
+      .row
+        .col-md-6
+          h1
+            strong
+              i.menu-open-icon.glyphicon.glyphicon-align-justify
+        .col-md-6
+          p.p-set
+            | Please Click on the 
+            strong  side menu icon 
+            | to see the effect of dropping menu 
+            |             Hope you will enjoy this snipppet which is inspired by this website , because 
+            strong i have learnt lots of things here. Thanks 
+
+  script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js')    
+  script(src='/javascripts/bootstrap.min.js')
+  script(src='/javascripts/adminPage.js')

@@ -4,7 +4,7 @@ var departmentMgr = require('../app/department').departmentMgr;
 
 router.get('/', function(req, res) {
   departmentMgr.getDepartments(function(result){
-    res.render('department',{title: 'دخول',dep:result});
+    res.render('department',{title: 'دخول',departments:result});
 
   });
 });

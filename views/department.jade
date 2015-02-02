@@ -1,5 +1,4 @@
 extends layout
-
 block content
   nav.navbar.navbar-default.navbar-fixed-top
     .container
@@ -41,14 +40,14 @@ block content
                 td الاسم  
                 td تعديل
                 td الغاء
-            for d in dep
+            for dept in departments
               tr
-                td #{d.name}  
+                td #{dept.name}  
                 td
-                  button#view.btn.btn-primary.btn-xs(data-title='Edit', data-toggle='modal',value="#{d.iddepartments}", data-target='#edit', data-placement='top', rel='tooltip')
+                  button#view.btn.btn-primary.btn-xs(data-title='Edit', data-toggle='modal',value="#{dept.iddepartments}", data-target='#edit', data-placement='top', rel='tooltip')
                     span.glyphicon.glyphicon-eye-open
                 td      
-                  button#delete.btn.btn-danger.btn-xs(href='#del', data-toggle='modal',value="#{d.iddepartments}")
+                  button#delete.btn.btn-danger.btn-xs(href='#del', data-toggle='modal',value="#{dept.iddepartments}")
                     span.glyphicon.glyphicon-trash 
 
     // Placed at the end of the document so the pages load faster
