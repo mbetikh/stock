@@ -10,6 +10,10 @@ exports.itemMgr = {
     if(true){
       console.log("okay");
     }
+    else
+    {
+     console.log("not okay"); 
+    }
     mysqlMgr.connect(function (conn) {
       conn.query('INSERT INTO `item` SET ?',  body,  function(err, result) {
         conn.release();
