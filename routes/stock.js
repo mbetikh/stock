@@ -4,6 +4,7 @@ var loginMgr = require('../app/login').loginMgr
 var router = express.Router();
 
 /* GET home page. */
+
 router.get('/', function(req, res) {
   res.render('stock', { title: 'Express' });
 });

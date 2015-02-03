@@ -3,9 +3,11 @@ var router = express.Router();
 var loginMgr = require('../app/login').loginMgr;
 
 /* GET users listing. */
+
 router.get('/', function(req, res) {
   res.send('respond with a resource');
 });
+
 router.post('/login', function(req, res) {
   loginMgr.userLogin(req.body,function(result){
     console.log(result); 

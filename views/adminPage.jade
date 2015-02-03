@@ -1,59 +1,68 @@
 extends layout
 block content 
+  
+
+
   html
   body
-    #side-menu.move-me
+    #side-menu.move-me 
       hr.hr-set
-      span.logo-text COMPANY NAME   
+      span.logo-text صفحة الإدارة    
       i.menu-close-icon.glyphicon.glyphicon-align-justify
       hr.hr-set-two
       ul
         li
           a(href='#')
             i.glyphicon.glyphicon-home
-            |     Home
+            |     الرئيسية
         li
-          a(href='#')
+          a(href='/department')
             i.glyphicon.glyphicon-th
-            |   Features
+            |   الأقسام
         li
           a(href='#')
             i.glyphicon.glyphicon-time
-            |   Pricing
+            |   المصاريف
         li
-          a(href='#')
+          a(href='/AddEmployee')
             i.glyphicon.glyphicon-user
-            |   Developer
+            |   تسجيل موظف
         li
           a(href='#')
             i.glyphicon.glyphicon-map-marker
-            |  Contact
+            |  الطلبيات
+        li
+          a(href='#')
+            i.glyphicon.glyphicon-user
+            |  المورد
       .intro-txt
         br
-        i
-          strong Company Ovewview 
-        hr
+      
+      hr
+      p
+        | عمل قسم تقنية المعلومات بلدية طرابلس
         p
-          | Nunc at viverra risus. In euismod quam ac dictum varius. 
-          | Nunc at viverra risus. 
-          | In euismod quam ac dictum varius.
+          
           br
-          a(href='http://www.binarytheme.com/', target='_blank', style='text-decoration:none;color:#000') by : binarytheme 
+          a(href='http://www.binarytheme.com/', target='_blank', style='text-decoration:none;color:#000')
     // SIDE MENU SECTION END
     .container
       .row
-        .col-md-6
+        .col-md-4
+          p.p-set
+          a.thumbnail(href='')
+            img(src='img/img1.png', alt='...')
           h1
             strong
               i.menu-open-icon.glyphicon.glyphicon-align-justify
         .col-md-6
           p.p-set
-            | Please Click on the 
-            strong  side menu icon 
-            | to see the effect of dropping menu 
-            |             Hope you will enjoy this snipppet which is inspired by this website , because 
-            strong i have learnt lots of things here. Thanks 
+            strong  الرجاء النقر علي
+            strong   أيقونة القائمة الجانبية لأظهار القائمة التي تساعدك في اتمام مهامك لمنظومة المخازن  
+        
+      
+          
 
-  script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js')    
+  script(src='/javascripts/jquery-1.11.1.min.js')    
   script(src='/javascripts/bootstrap.min.js')
   script(src='/javascripts/adminPage.js')
