@@ -15,12 +15,20 @@ router.get('/', function(req, res) {
 router.get('/employee', function(req,res){
     res.render('employee',{title: 'ألموظفين'});
 });
+// router.get('/', function(req, res) {
+//   res.render('department', { title: 'Express' });
+// });
 
 
 router.get('/newItem', function(req,res){
   res.render('newItem',{title: 'اضافة صنف'});
 });
 
+
+
+router.get('/login', function(req,res){
+  res.render('login',{title: 'دخول'});
+});
 
 
 router.get('/addItemm', function(req,res){
@@ -32,8 +40,13 @@ router.get('/addItemm', function(req,res){
 
 
 
+router.get('/enterTest', function(req,res){
+  res.render('enterTest',{title: 'test'});
+});
+
+
 router.get('/adminPage', function(req,res){
-  res.render('adminPage',{title: 'adminPage'});
+  res.render('adminPage',{title: 'صفـحة الأدارة'});
 })
 
 router.post('/addItem', function(req,res){
