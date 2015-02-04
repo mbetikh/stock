@@ -1,20 +1,26 @@
 var express = require('express');
 var itemMgr = require('../app/item').itemMgr
 var loginMgr = require('../app/login').loginMgr
+
 var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res) {
-  res.render('department', { title: 'Express' });
+  res.render('login', { title: 'دخول' });
 });
+
+// router.get('/login', function(req,res){
+//   res.render('login',{title: 'دخول'});
+// });
+router.get('/employee', function(req,res){
+    res.render('employee',{title: 'ألموظفين'});
+});
+
 
 router.get('/newItem', function(req,res){
   res.render('newItem',{title: 'اضافة صنف'});
 });
 
-router.get('/login', function(req,res){
-  res.render('login',{title: 'دخول'});
-});
 
 
 router.get('/addItemm', function(req,res){
@@ -22,9 +28,9 @@ router.get('/addItemm', function(req,res){
 });
 
 
-router.get('/AddEmployee', function(req,res){
-  res.render('AddEmployee',{title: 'تـــسجيل موظف'});
-});
+
+
+
 
 router.get('/adminPage', function(req,res){
   res.render('adminPage',{title: 'adminPage'});

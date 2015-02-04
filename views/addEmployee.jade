@@ -1,0 +1,51 @@
+extends layout
+block content
+  div.container
+    div.header
+      ul.nav.nav-pills.pull-right
+      h3.text-muted.text-left 
+        a(href="/")
+          img(src="../images/22.png")
+    a.btn.btn-primary.pull-left(type="button", href="/root") رجـــــوع
+    div.panel.panel-default.form-signin 
+      div.panel-heading.text-right
+        h1.panel-title إضافة موظف
+      div.panel-body
+
+        form#form.form-signin(role="form" , action="/employee/addEmployeee", method="post")
+
+          div.form-group
+            lable الاسم
+            input#email.form-control.text-left(dir="ltr", type="text",name="name", placeholder="البريد الإلكتروني",required="")
+         
+          div.form-group
+            lable البريد الاكتروني
+            input#email.form-control.text-left(dir="ltr", type="text",name="email", placeholder="البريد الإلكتروني",required="")
+          div.form-group
+            lable أسم المستخدم
+            input#email.form-control.text-left(dir="ltr", type="text",name="email", placeholder="البريد الإلكتروني",required="")
+          div.form-group
+            lable الرقم السري
+            input#email.form-control.text-left(dir="ltr", type="text",name="email", placeholder="البريد الإلكتروني",required="")
+
+
+          div.form-group
+            lable رقم الهاتف
+            input#phone.form-control(type='text', name='phoneNumber',placeholder="رقم الهاتف" , style='width: 200px;')
+          //Select for choose manager of constituencies
+          div.form-group
+            font(size="4", color="black" , face="cursive" )
+              select.form-control#constit(name="iddepartment")
+                option(value="-1", selected="selected") القسم
+                for d in dep
+                  option(value="#{d.iddepartments}") #{d.name}
+                    
+          div.form-group.text-center
+           button.btn.btn-lg.btn-primary(type="submit") إضافة
+
+  script(src="/javascripts/jquery-1.11.1.min.js") 
+  script(src="/javascripts/bootstrap.min.js")
+  script(src="/javascripts/jquery.validate.min.js")
+  //- script(src="/javascripts/adduser.js")
+  script(src="/javascripts/phone.js")
+
