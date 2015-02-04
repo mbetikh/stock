@@ -12,6 +12,8 @@ router.get('/newItem', function(req,res){
   res.render('newItem',{title: 'اضافة صنف'});
 });
 
+
+
 router.get('/login', function(req,res){
   res.render('login',{title: 'دخول'});
 });
