@@ -2,12 +2,18 @@
     padding-top: 113px;
 }
 
+
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   background-color:#FFFFFF;
    
 }
+.submit-button {
+  margin-top: 10px;
+}
+
+
 
 a {
   color: #00FFFF;
