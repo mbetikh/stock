@@ -1,9 +1,69 @@
 extends layout
 block content
- 
+   div.container
+    div.header
+      ul.nav.nav-pills.pull-right
+      h3.text-muted.text-left 
+        a(href="/")
+          img(src="../images/22.png")
+    a.btn.btn-primary.pull-left(type="button", href="/root") رجـــــوع
+    div.panel.panel-default.form-signin 
+      div.panel-heading.text-right
+        h1.panel-title إضــافة طلب
+      div.panel-body
+
+        form#form.form-signin(role="form" , action="", method="post")
+           
+        
+         div.form-group
+          lable نوع السلعة
+            font(size="4", color="black" , face="cursive" )
+             select.form-control#constit(name="iddepartment")
+              option(value="-1", selected="selected") نوع الســلعة           
+        
+          div.form-group
+          lable إسم السـلعة
+            font(size="4", color="black" , face="cursive" )
+             select.form-control#constit(name="iddepartment")
+              option(value="-1", selected="selected") إســم السلعة 
+          
+          div.form-group
+          lable المتــبقي
+            input#phone.form-control(type='text', name='phoneNumber',placeholder="المتـبقي" , style='width: 200px;')
+          div.form-group
+          lable عدد السلع
+           .input-group
+              span.input-group-btn
+                button.btn.btn-danger.btn-number(type='button', data-type='minus', data-field='quant[2]')
+                  span.glyphicon.glyphicon-minus
+              input.form-control.input-number(type='text', name='quant[2]', value='10', min='1', max='100')
+              span.input-group-btn
+                button.btn.btn-success.btn-number(type='button', data-type='plus', data-field='quant[2]')
+                  span.glyphicon.glyphicon-plus
+          div.form-group
+           
+          lable.control-label(for='textarea') وصــف الطلب
+            .controls
+              textarea#textarea(name='textarea' ,style='width: 400px; height:150px') وصف الطلب
 
 
 
+     
+         
+               
+                    
+          div.form-group.text-left
+           button.btn.btn-lg.btn-primary(type="submit" , style='width: 200px;') إضافة
+
+  script(src="/javascripts/jquery-1.11.1.min.js") 
+  script(src="/javascripts/bootstrap.min.js")
+  script(src="/javascripts/jquery.validate.min.js")
+  //- script(src="/javascripts/adduser.js")
+
+  script(src="/javascripts/AddOrder.js")
+
+
+  
 
 
 
@@ -103,10 +163,3 @@ block content
 
  
 
-  script(src="/javascripts/jquery-1.11.1.min.js") 
-  script(src="/javascripts/bootstrap.min.js")
-  script(src='/javascripts/bootstrap-editable.min.js')
-  script(src='/javascripts/bootstrap-datetimepicker.fr.js')
-  script(src='/javascripts/bootstrap-datetimepicker.js')
-  script(src='/javascripts/editdepartment.js')
-  script(src='/javascripts/AddOrder.js')
