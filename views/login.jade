@@ -14,7 +14,7 @@ block content
           .row
             .col-xs-6
               .well
-                form#loginForm(method='POST', action='', novalidate='novalidate')
+                form#loginForm(method='POST', action='/users/login/', novalidate='novalidate')
                   .form-group
                     label.control-label(for='username') إسم الموظف
                     input#username.form-control(type='text', name='username', value='', required='', title='Please enter you username', placeholder='example@gmail.com')
@@ -35,10 +35,6 @@ block content
               p
                 a.thumbnail(href='')
                   img(src='img/img1.png', alt='...')
-
-
-
-  
 
 
 

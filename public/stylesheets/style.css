@@ -7,7 +7,6 @@ body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   background-color:#FFFFFF;
-   
 }
 .submit-button {
   margin-top: 10px;
@@ -16,7 +15,7 @@ body {
 
 
 a {
-  color: #00FFFF;
+  color: #fff;
 }
 
 .p-set
@@ -103,4 +102,10 @@ font-weight:900;
 }
 .intro-txt {
     padding:20px;
+}
+.popover {
+top: 67px;
+left: 560px;
+display: block;
+right: auto;
 }
