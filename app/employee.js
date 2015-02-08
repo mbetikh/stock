@@ -16,6 +16,19 @@ exports.EmployeeMgr = {
          });
       });
      },
+     
+    getEmployees: function(id,cb){
+      mysqlMgr.connect(function (conn) {
+        conn.query('SELECT * FROM `employee` where idemployee = ?',id, function(err, result) {
+          conn.release();
+          if(err) {
+            util.log(err);
+          } else {
+            cb(result);
+          }
+        });
+      });
+    },
     addEmployee: function(body,cb){
       mysqlMgr.connect(function (conn) {
         console.log(body);
@@ -32,16 +45,31 @@ exports.EmployeeMgr = {
      },
    getEmployee: function(cb){
       mysqlMgr.connect(function (conn) {
-        conn.query('SELECT * FROM `employee` where deleted = 1', function(err, result) {
+        console.log("dd");
+        conn.query('SELECT e.idemployee , e.name empname , e.email , e.phoneNumber , e.username ,e.password , e.level , d.name dname  FROM `employee` `e`,`department` `d` where e.deleted = 1 and `e`.`iddepartment` = `d`.`iddepartments` ', function(err, result) {
           conn.release();
+
             if(err) {
               util.log(err);
             } else {
+
               cb(result);
             }
           });
         });
       },
+      updateEmployee: function(body,cb){
+    mysqlMgr.connect(function (conn) {
+      conn.query('update `employee` set '+body.name+' = ? WHERE`idemployee`=?',[body.value,body.pk], function(err, result) {
+        conn.release();
+        if(err) {
+          util.log(err);
+        } else {
+          cb(result);
+        }
+      });
+    });
+  },
 
   }
 

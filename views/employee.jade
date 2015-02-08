@@ -1,25 +1,49 @@
 extends layout
 block content
   .row-md-12
-    .col-md-10
-      .col-md-offset-2     
+    .col-md-11
+      .col-md-offset-1     
         .panel.panel-warning
           // Default panel contents
-          .panel-heading Panel heading
+          .panel-heading
+            h3 ألـموظـفـيـن
 
-          .panel-body
-            p ..
-              table.table
-                tbody
-                  tr
-                    td أسم اللجنة بلغة الأنجليزية  
-                    td  f dfd
-                    td أسم اللجنة بلغة الأنجليزية  
-                    td  f dfd
-                  //- for e in emp
-                  //-   tr
-                  //-     td(width='35%') أسم اللجنة بلغة الأنجليزية  
-                       
+            .panel-body
+              form#form.form-signin(role="form" , action="/employee/employee", method="post")
+                table.table
+                  thead
+                    th أسم الموظف 
+                    th البريد الاكتروني
+                    th أسم المستخدم
+                    th الرقم السري
+                    th رقم الهاتف
+                    th الصﻻحية
+                    th القسم
+                    th
+                    th
+                  tbody                 
+                    for e in emp
+                      tr
+                        td #{e.empname}
+                        td #{e.email}
+                        td #{e.username}
+                        td #{e.password}
+                        td #{e.phoneNumber}    
+                        if e.level == 1
+                          td  root
+                        else if e.level == 2
+                          td admin
+                        else if e.level == 3
+                          td user    
+
+                        td #{e.dname}
+                        td
+                          a#viw.btn.btn-primary.btn-xs(href="/employee/editEmployee/#{e.idemployee}") 
+                            span.glyphicon.glyphicon-floppy-saved
+                        td
+                          a.btn.btn.btn-primary.btn-xs(href="") 
+                            span.glyphicon.glyphicon-floppy-remove  
+                               
                         
 
 
@@ -28,4 +52,5 @@ block content
   script(src="/javascripts/bootstrap.min.js")
   script(src="/javascripts/jquery.validate.min.js")
   script(src="/javascripts/phone.js")
+  script(src="/javascripts/Employee.js")
 

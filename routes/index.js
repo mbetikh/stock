@@ -12,9 +12,7 @@ router.get('/', function(req, res) {
 // router.get('/login', function(req,res){
 //   res.render('login',{title: 'دخول'});
 // });
-router.get('/employee', function(req,res){
-    res.render('employee',{title: 'ألموظفين'});
-});
+
 // router.get('/', function(req, res) {
 //   res.render('department', { title: 'Express' });
 // });
