@@ -1,31 +1,117 @@
 extends layout
 block content
-        
-  html
-    body
-      .jumbotron.jumbotron-sm
-        .container
-          .row
-            .col-sm-12.col-lg-12
-              h1.h1
-                | تسجيل الطلبيات
-              
-      .container
-        .row
-          .col-md-8
-            .well.well-sm
-              form
-                .row
-                  .col-md-6
-                    .form-group
-                      .form-group
-                      label(for='subject')
-                        | نوع السلعة 
-                      select#subject.form-control(name='item', required='required')
+   div.container
+    div.header
+      ul.nav.nav-pills.pull-right
+      h3.text-muted.text-left 
+        a(href="/")
+          img(src="../images/22.png")
+    a.btn.btn-primary.pull-left(type="button", href="/root") رجـــــوع
+    div.panel.panel-default.form-signin 
+      div.panel-heading.text-right
+        h1.panel-title إضــافة طلب
+      div.panel-body
 
-                      label(for='subject')
-                        | اسم السلعة
-                      select#subject.form-control(name='item', required='required')
+        form#form.form-signin(role="form" , action="", method="post")
+           
+        
+         div.form-group
+          lable نوع السلعة
+            font(size="4", color="black" , face="cursive" )
+             select.form-control#constit(name="iddepartment")
+              option(value="-1", selected="selected") نوع الســلعة           
+        
+          div.form-group
+          lable إسم السـلعة
+            font(size="4", color="black" , face="cursive" )
+             select.form-control#constit(name="iddepartment")
+              option(value="-1", selected="selected") إســم السلعة 
+          
+          div.form-group
+          lable المتــبقي
+            input#phone.form-control(type='text', name='phoneNumber',placeholder="المتـبقي" , style='width: 200px;')
+          div.form-group
+          lable عدد السلع
+           .input-group
+              span.input-group-btn
+                button.btn.btn-danger.btn-number(type='button', data-type='minus', data-field='quant[2]')
+                  span.glyphicon.glyphicon-minus
+              input.form-control.input-number(type='text', name='quant[2]', value='10', min='1', max='100')
+              span.input-group-btn
+                button.btn.btn-success.btn-number(type='button', data-type='plus', data-field='quant[2]')
+                  span.glyphicon.glyphicon-plus
+          div.form-group
+           
+          lable.control-label(for='textarea') وصــف الطلب
+            .controls
+              textarea#textarea(name='textarea' ,style='width: 400px; height:150px') وصف الطلب
+
+
+
+     
+         
+               
+                    
+          div.form-group.text-left
+           button.btn.btn-lg.btn-primary(type="submit" , style='width: 200px;') إضافة
+
+  script(src="/javascripts/jquery-1.11.1.min.js") 
+  script(src="/javascripts/bootstrap.min.js")
+  script(src="/javascripts/jquery.validate.min.js")
+  //- script(src="/javascripts/adduser.js")
+
+  script(src="/javascripts/AddOrder.js")
+
+
+  
+
+
+
+
+
+
+
+
+
+
+        
+  //- html
+  //-   body
+  //-     .jumbotron.jumbotron-sm
+  //-       .container
+  //-         .row
+  //-           .col-sm-12.col-lg-12
+  //-             h1.h1
+  //-               | تسجيل الطلبيات
+              
+  //-     .container
+  //-       .row
+  //-         .col-md-8
+  //-           .well.well-sm
+  //-             form
+  //-               .row
+  //-                 .col-md-6
+  //-                   .form-group
+  //-                     .form-group
+  //-                     label(for='subject')
+  //-                       | نوع السلعة 
+  //-                     select#subject.form-control(name='item', required='required')
+
+  //-                     label(for='subject')
+  //-                       | اسم السلعة
+  //-                     select#subject.form-control(name='item', required='required')
+                      
+  //-                     label(for='subject')
+  //-                       | اسم السلعة
+  //-                     .col-sm-6(style='height:130px;')
+  //-                       .form-group
+  //-                         #datetimepicker10.input-group.date
+  //-                           input.form-control(type='text')
+  //-                           span.input-group-addon
+  //-                             span.glyphicon.glyphicon-calendar
+                    
+                       
+
 
 
                         //- option(value='na', selected='') Choose One:
@@ -38,38 +124,38 @@ block content
                     //- .form-group
                     //-   label(for='email')
                     //-     | Email Address
-                      .input-group
-                        span.input-group-addon
-                          span.glyphicon.glyphicon-envelope
-                        input#email.form-control(type='email', placeholder='Enter email', required='required')
+          //-             .input-group
+          //-               span.input-group-addon
+          //-                 span.glyphicon.glyphicon-envelope
+          //-               input#email.form-control(type='email', placeholder='Enter email', required='required')
                     
-                  .col-md-6
-                    .form-group
-                      label(for='name')
-                        | Message
-                      textarea#message.form-control(name='message', rows='9', cols='25', required='required', placeholder='Message')
-                  .col-md-12
-                    button#btnContactUs.btn.btn-primary.pull-right(type='submit')
-                      | Send Message
-          .col-md-4
-            form
-              legend
-                span.glyphicon.glyphicon-globe
-                |  Our office
-              address
-                strong Twitter, Inc.
-                br
-                |                 795 Folsom Ave, Suite 600
-                br
-                |                 San Francisco, CA 94107
-                br
-                abbr(title='Phone')
-                  | P:
-                |                 (123) 456-7890
-              address
-                strong Full Name
-                br
-                a(href='mailto:#') first.last@example.com
+          //-         .col-md-6
+          //-           .form-group
+          //-             label(for='name')
+          //-               | Message
+          //-             textarea#message.form-control(name='message', rows='9', cols='25', required='required', placeholder='Message')
+          //-         .col-md-12
+          //-           button#btnContactUs.btn.btn-primary.pull-right(type='submit')
+          //-             | Send Message
+          //- .col-md-4
+          //-   form
+          //-     legend
+          //-       span.glyphicon.glyphicon-globe
+          //-       |  Our office
+          //-     address
+          //-       strong Twitter, Inc.
+          //-       br
+          //-       |                 795 Folsom Ave, Suite 600
+          //-       br
+          //-       |                 San Francisco, CA 94107
+          //-       br
+          //-       abbr(title='Phone')
+          //-         | P:
+          //-       |                 (123) 456-7890
+          //-     address
+          //-       strong Full Name
+          //-       br
+          //-       a(href='mailto:#') first.last@example.com
 
 
 
@@ -77,7 +163,3 @@ block content
 
  
 
-  script(src="/javascripts/jquery-1.11.1.min.js") 
-  script(src="/javascripts/bootstrap.min.js")
-  script(src='/javascripts/bootstrap-editable.min.js')
-  script(src='/javascripts/editdepartment.js')
