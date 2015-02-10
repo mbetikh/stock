@@ -49,8 +49,6 @@ router.get('/adminPage', function(req,res){
 
 router.post('/addItem', function(req,res){
   itemMgr.addItem(req.body,function(result){
-    console.log(result);
-
   });
 });
 

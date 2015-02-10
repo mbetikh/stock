@@ -1,17 +1,15 @@
 $(document).ready(function(){
- // $('body').on('click', '#viw', function () {
-    //alert($(this).data("value"));
-   // window.location.href='/employee/editEmployee/'+$(this).data("value");
- // });
-
- //  $('body').on('click', '#delete', function () {
- //  	$('#confdelete').val($(this).val());
- //  });
+  // $('body').on('click', '#view', function () {
+  //   window.location.href='/department/editdep/'+$(this).val();
+  // });
+  $('body').on('click','#dlte',function () {
+  	$('#confdlte').val($(this).val());
+  });
   
- //  $('body').on('click', '#confdelete', function () {
-
- //  	$.get('/department/delete/'+$(this).val(),function(result){
- //  		window.location.href='/department';
-	// })
- //  });
+  $('body').on('click','#confdlte',function () {
+ 
+  	$.get('/employee/deleteEmp/'+$(this).val(),function(result){
+  		window.location.href='/employee';
+	})
+  });
 });

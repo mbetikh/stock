@@ -37,7 +37,6 @@ router.get('/editdep/:id', function(req,res){
 
 router.post('/add', function(req,res){
   departmentMgr.addDp(req.body,function(result){
-    console.log(result);
 
   });
   });

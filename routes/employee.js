@@ -9,6 +9,13 @@ var employeeMgr = require('../app/employee').EmployeeMgr;
 // });
 
 
+  
+router.get('/deleteEmp/:id', function(req,res){
+  employeeMgr.deletEmployee(req.params.id,function(result){
+   res.send(result);
+   });
+});
+
 
 router.get('/addEmployee', function(req,res){
   departmentMgr.getDepartments(function(result){
@@ -53,13 +60,6 @@ router.get('/editEmployee/:id', function(req,res){
   });
 });
 
-
-
-// router.post('/addItem', function(req,res){
-//   itemMgr.addItem(req.body,function(result){
-//     console.log(result);
-
-//   });
 
 module.exports = router;
 

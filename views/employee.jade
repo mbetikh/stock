@@ -9,7 +9,6 @@ block content
             h3 ألـموظـفـيـن
 
             .panel-body
-              form#form.form-signin(role="form" , action="/employee/employee", method="post")
                 table.table
                   thead
                     th أسم الموظف 
@@ -41,16 +40,23 @@ block content
                           a#viw.btn.btn-primary.btn-xs(href="/employee/editEmployee/#{e.idemployee}") 
                             span.glyphicon.glyphicon-floppy-saved
                         td
-                          a.btn.btn.btn-primary.btn-xs(href="") 
-                            span.glyphicon.glyphicon-floppy-remove  
-                               
-                        
+                           button#dlte.btn.btn-danger.btn-xs(href='#del', data-toggle='modal',value="#{e.idemployee}")
+                            span.glyphicon.glyphicon-trash 
+              #del.modal.fade(data-width='760',role="dialog",aria-labelledby="myModalLabel", tabindex='-1',aria-hidden="true")
+                .modal-dialog
+                  .modal-content
+                    .modal-headr.modal-header-danger
+                      p.h1 هل أنت متأكد من  حدف ؟
+                    .modal-body
+                      p.h2 هل انت متأكد 
+                      p 
+                    .modal-footer
+                      button#confdlte.btn.btn-danger(type='button',data-dismiss='modal') حدف
+                      button.btn.btn-success(data-dismiss='modal', type='button') إلغاء              
+  script(src='/javascripts/jquery-1.11.1.min.js')    
+  script(src='/javascripts/bootstrap.min.js')
+  script(src='/javascripts/Employee.js')
+       //script(src="/javascripts/phone.js")
+  
 
-
-              
-  script(src="/javascripts/jquery-1.11.1.min.js") 
-  script(src="/javascripts/bootstrap.min.js")
-  script(src="/javascripts/jquery.validate.min.js")
-  script(src="/javascripts/phone.js")
-  script(src="/javascripts/Employee.js")
 

@@ -70,6 +70,18 @@ exports.EmployeeMgr = {
       });
     });
   },
+  deletEmployee: function(id,cb){
+    mysqlMgr.connect(function (conn) {
+      conn.query('update `employee` set `deleted`=0 WHERE`idemployee`=?',id, function(err, result) {
+        conn.release();
+        if(err) {
+          util.log(err);
+        } else {
+          cb(result)
+        }
+      });
+    });
+  },
 
   }
 
