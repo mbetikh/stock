@@ -1,0 +1,38 @@
+extends layout
+block content
+  .row-md-12
+    .col-md-8
+      .col-md-offset-8
+        .panel.panel-warning
+          // Default panel contents
+          .panel-heading Panel heading
+
+          .panel-body
+            p ..
+              table.table
+                tbody
+                  tr
+                    td(width='35%') أسم اللجنة بلغة الأنجليزية  
+                    td(width='65%')
+                      a#offEname(href='#', data-type='text', data-title='اسم المستخدم' )
+                  tr
+                    td(width='35%') أسم اللجنة بلغة العربية  
+                    td(width='65%')
+                      a#offname(href='#', data-type='text', data-title='البريد الالكترونب')  
+                  tr
+                    td(width='35%') منطقة اللجنة  
+                    td(width='65%')
+                      a#offnumber(href='#', data-type='text',  data-title='رقم الهاتف')  
+                  tr
+                    td الصلاحية
+                    td
+                      a#pl
+                      
+
+
+              
+  script(src="/javascripts/jquery-1.11.1.min.js") 
+  script(src="/javascripts/bootstrap.min.js")
+  script(src="/javascripts/jquery.validate.min.js")
+  script(src="/javascripts/phone.js")
+

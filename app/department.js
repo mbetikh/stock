@@ -6,7 +6,7 @@ exports.departmentMgr = {
 /* Add item */
   getDepartments : function(cb){
     mysqlMgr.connect(function (conn) {
-      conn.query('SELECT * FROM `department` ', function(err, result) {
+      conn.query('SELECT * FROM `department` where deleted = 1', function(err, result) {
         conn.release();
         if(err) {
           util.log(err);
@@ -38,6 +38,31 @@ exports.departmentMgr = {
           cb(result);
         }
       });
+    });
+  },
+  dpdelete: function(id,cb){
+    mysqlMgr.connect(function (conn) {
+      conn.query('update `department` set `deleted`=0 WHERE`iddepartments`=?',id, function(err, result) {
+        conn.release();
+        if(err) {
+          util.log(err);
+        } else {
+          cb(result)
+        }
+      });
+    });
+  },
+  
+    addDp: function(body,cb){
+    mysqlMgr.connect(function (conn) {
+      conn.query('INSERT INTO `department` SET ?', body,  function(err, result) {
+        conn.release();
+        if(err) {
+          util.log(err);
+        } else {
+          cb(result);
+        }
+      });  
     });
   },
 }

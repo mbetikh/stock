@@ -7,7 +7,7 @@ exports.loginMgr = {
   userLogin : function(body,cb){
     console.log(body);
     mysqlMgr.connect(function (conn) {
-      conn.query('SELECT * FROM `users` WHERE username=? and password = ?',  [body.username,body.password],  function(err, result) {
+      conn.query('SELECT * FROM `department` WHERE username=? and password = ?',  [body.username,body.password],  function(err, result) {
         conn.release();
         if(err) {
           util.log(err);
@@ -18,7 +18,6 @@ exports.loginMgr = {
     });
   }
 }
-
 
 
 

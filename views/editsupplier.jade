@@ -1,0 +1,42 @@
+extends layout
+block content
+  div.container 
+      button#enable.btn.btn-primary تمكــين / تعطـــيل
+      button#delete.btn.btn-danger.pull-right(href='#del', data-toggle='modal',value="#{editsupplier[0].idsupplier}")
+        span.glyphicon.glyphicon-trash
+      .col-lg-1
+      a.btn.btn-primary.pull-left(type="button", href="/supplier") رجـــــوع
+      p
+    div.container 
+      div.form-group 
+        table#user.table.table-bordered.table-striped(style='clear: both')
+          tbody
+            tr
+              td(width='35%') اســـــم المـــــورد
+              td(width='65%')
+                a#name(href='#', data-type='text', data-pk='#{editsupplier[0].idsupplier}', data-title='اسم المدير' data-value='#{editsupplier[0].name}') #{editsupplier[0].name}
+            tr
+              td(width='35%') اســـــم الشـــــركة
+              td(width='65%')
+                a#companyName(href='#', data-type='text', data-pk='#{editsupplier[0].idsupplier}', data-title='اسم المدير' data-value='#{editsupplier[0].companyName}') #{editsupplier[0].companyName}    
+            tr
+              td(width='35%') البـــريد الالكتروني
+              td(width='65%')
+                a#Email(href='#', data-type='text', data-pk='#{editsupplier[0].idsupplier}', data-title='اسم المدير' data-value='#{editsupplier[0].Email}') #{editsupplier[0].Email}  
+            tr
+              td(width='35%') رقــــــم الهــــاتف
+              td(width='65%')
+                a#mobail(href='#', data-type='text', data-pk='#{editsupplier[0].idsupplier}', data-title='اسم المدير' data-value='#{editsupplier[0].mobail}') #{editsupplier[0].mobail}    
+    #del.modal.fade(data-width='760',role="dialog",aria-labelledby="myModalLabel", tabindex='-1',aria-hidden="true")
+          .modal-dialog
+            .modal-content
+              .modal-headr.modal-header-danger
+                 p.h1 هل أنت متأكد من  الحدف ؟
+              .modal-footer
+                button#offdelete.btn.btn-danger(type='button',data-dismiss='modal') حذف
+                button.btn.btn-success(data-dismiss='modal', type='button') إلغاء
+    // Placed at the end of the document so the pages load faster
+  script(src='/javascripts/jquery-1.11.1.min.js')    
+  script(src='/javascripts/bootstrap.min.js')
+  script(src='/javascripts/bootstrap-editable.min.js')
+  script(src='/javascripts/editsupplier.js')
