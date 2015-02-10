@@ -15,7 +15,6 @@ router.get('/login', function(req,res){
 });
 
 
-
 router.post('/edit', function(req,res){
   departmentMgr.update(req.body,function(result){
    res.send(result);

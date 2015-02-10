@@ -1,0 +1,47 @@
+extends layout
+block content
+  div.container
+    div.header
+      ul.nav.nav-pills.pull-right
+      h3.text-muted.text-left 
+        a(href="/")
+          img(src="../images/22.png")
+    a.btn.btn-primary.pull-left(type="button", href="/") رجـــــوع
+    div.panel.panel-default.form-signin 
+      div.panel-heading.text-right
+        h1.panel-title الموردين
+      div.panel-body
+          .col-md-9.col-sm-9.col-xs-9
+          table.table.table-condensed
+           tr
+             td اسم المورد
+             td اسم الشركة  
+             td البريد الالكتروني
+             td رقم الهاتف
+             td تعديل
+             td حذف
+           for sup in supplier
+            tr
+                td #{sup.name} 
+                td #{sup.companyName} 
+                td #{sup.Email} 
+                td #{sup.mobail}
+                td
+                  button#view.btn.btn-primary.btn-xs(data-title='Edit', data-toggle='modal',value="#{sup.idsupplier}", data-target='#edit', data-placement='top', rel='tooltip')
+                    span.glyphicon.glyphicon-eye-open
+                td      
+                  button#delete.btn.btn-danger.btn-xs(href='#del', data-toggle='modal',value="#{sup.idsupplier}")
+                    span.glyphicon.glyphicon-trash 
+      #del.modal.fade(data-width='760',role="dialog",aria-labelledby="myModalLabel", tabindex='-1',aria-hidden="true")
+        .modal-dialog
+          .modal-content
+            .modal-headr.modal-header-danger
+              p.h1 هل أنت متأكد من  الحدف ؟
+           
+            .modal-footer
+              button#confdelete.btn.btn-danger(type='button',data-dismiss='modal') حدف
+              button.btn.btn-success(data-dismiss='modal', type='button') إلغاء 
+      a.btn.btn-primary.pull-right(type="button", href="/supplier/addSupplier") إضـــــافة
+  script(src='/javascripts/jquery-1.11.1.min.js')    
+  script(src='/javascripts/bootstrap.min.js')
+  script(src='/javascripts/supplier.js')

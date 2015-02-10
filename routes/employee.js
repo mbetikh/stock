@@ -4,6 +4,10 @@ var departmentMgr = require('../app/department').departmentMgr;
 var employeeMgr = require('../app/employee').EmployeeMgr;
 
 
+
+router.get('/', function(req,res){
+    res.render('employee',{title: 'ألموظفين'});
+});
 // router.get('/', function(req,res){
 //     res.render('employee',{title: 'ألموظفين'});
 // });
@@ -22,6 +26,7 @@ router.get('/addEmployee', function(req,res){
     res.render('addEmployee',{title: 'أضافة موظف',dep:result});
   });
 });
+
 router.get('/getdep', function(req,res){
   departmentMgr.getDepartments(function(result){
     res.send(result);

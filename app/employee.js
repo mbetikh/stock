@@ -16,6 +16,7 @@ exports.EmployeeMgr = {
          });
       });
      },
+
      
     getEmployees: function(id,cb){
       mysqlMgr.connect(function (conn) {
@@ -42,7 +43,7 @@ exports.EmployeeMgr = {
             }
            });
         });
-     },
+       },
    getEmployee: function(cb){
       mysqlMgr.connect(function (conn) {
         console.log("dd");
@@ -83,8 +84,6 @@ exports.EmployeeMgr = {
     });
   },
 
-  }
 
-
-
+}
 
