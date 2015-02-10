@@ -1,38 +1,54 @@
 extends layout
 block content
-  .row-md-12
-    .col-md-8
-      .col-md-offset-8
+  .row-md-12    
+    .col-md-11
+      .col-md-offset-1     
         .panel.panel-warning
           // Default panel contents
-          .panel-heading Panel heading
+          .panel-heading
+            h3 ألـموظـفـيـن
 
-          .panel-body
-            p ..
-              table.table
-                tbody
-                  tr
-                    td(width='35%') أسم اللجنة بلغة الأنجليزية  
-                    td(width='65%')
-                      a#offEname(href='#', data-type='text', data-title='اسم المستخدم' )
-                  tr
-                    td(width='35%') أسم اللجنة بلغة العربية  
-                    td(width='65%')
-                      a#offname(href='#', data-type='text', data-title='البريد الالكترونب')  
-                  tr
-                    td(width='35%') منطقة اللجنة  
-                    td(width='65%')
-                      a#offnumber(href='#', data-type='text',  data-title='رقم الهاتف')  
-                  tr
-                    td الصلاحية
-                    td
-                      a#pl
-                      
+            .panel-body
+                table.table
+                  thead
+                    th أسم الموظف 
+                    th البريد الاكتروني
+                    th أسم المستخدم
+                    th الرقم السري
+                    th رقم الهاتف
+                    th الصﻻحية
+                    th القسم
+                    th
+                    th
+                  tbody                 
+                    for e in emp
+                      tr
+                        td #{e.empname}
+                        td #{e.email}
+                        td #{e.username}
+                        td #{e.password}
+                        td #{e.phoneNumber}    
+                        if e.level == 1
+                          td  root
+                        else if e.level == 2
+                          td admin
+                        else if e.level == 3
+                          td user    
 
+                        td #{e.dname}
+                        td
+                          a#viw.btn.btn-primary.btn-xs(href="/employee/editEmployee/#{e.idemployee}") 
+                            span.glyphicon.glyphicon-floppy-saved
+                        td
+                          a.btn.btn.btn-primary.btn-xs(href="") 
+                            span.glyphicon.glyphicon-floppy-remove  
+                               
+                        
 
               
   script(src="/javascripts/jquery-1.11.1.min.js") 
   script(src="/javascripts/bootstrap.min.js")
   script(src="/javascripts/jquery.validate.min.js")
   script(src="/javascripts/phone.js")
+  script(src="/javascripts/Employee.js")
 

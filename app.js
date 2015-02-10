@@ -10,7 +10,7 @@ var stock = require('./routes/stock');
 var department = require('./routes/department');
 var employee = require('./routes/employee');
 var supplier = require('./routes/supplier');
-
+var order = require('./routes/order');
 var app = express();
 
 // view engine setup
@@ -31,6 +31,7 @@ app.use('/department',department);
 app.use('/employee',employee);
 app.use('/supplier',supplier);
 app.use('/addSupplier',supplier);
+app.use('/order',order); 
 
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {

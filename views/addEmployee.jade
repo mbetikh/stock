@@ -6,12 +6,12 @@ block content
       h3.text-muted.text-left 
         a(href="/")
           img(src="../images/22.png")
-    a.btn.btn-primary.pull-left(type="button", href="/root") رجـــــوع
+    a.btn.btn-primary.pull-left(type="button", href="/employee") رجـــــوع
     div.panel.panel-default.form-signin 
       div.panel-heading.text-right
         h1.panel-title إضافة موظف
       div.panel-body
-        
+
         form#form.form-signin(role="form" , action="/employee/addEmployeee", method="post")
 
           div.form-group
@@ -23,6 +23,14 @@ block content
             input#email.form-control.text-left(dir="ltr", type="text",name="email", placeholder="البريد الإلكتروني",required="")
 
           div.form-group
+            lable أسم المستخدم
+            input#email.form-control.text-left(dir="ltr", type="text",name="username", placeholder="البريد الإلكتروني",required="")
+          div.form-group
+            lable الرقم السري
+            input#email.form-control.text-left(dir="ltr", type="text",name="password", placeholder="البريد الإلكتروني",required="")
+
+
+          div.form-group
             lable رقم الهاتف
             input#phone.form-control(type='text', name='phoneNumber',placeholder="رقم الهاتف" , style='width: 200px;')
           //Select for choose manager of constituencies
@@ -32,7 +40,14 @@ block content
                 option(value="-1", selected="selected") القسم
                 for d in dep
                   option(value="#{d.iddepartments}") #{d.name}
-                    
+
+          div.form-group
+            lable. صﻻحية المستخدم
+            select#region_name.form-control(type="text",name="level", placeholder="رقم اللجنة", required="",autofocus="")
+              option(value="1") root 
+              option(value="2") admine 
+              option(value="3") user        
+      
           div.form-group.text-center
            button.btn.btn-lg.btn-primary(type="submit") إضافة
 

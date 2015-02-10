@@ -8,11 +8,11 @@ block content
             span.icon-bar
             span.icon-bar 
             span.icon-bar
-          a.navbar-brand(href='/adminPage') الرئيسية
+          a.navbar-brand(href='#') Stock
         #navbar.navbar-collapse.collapse
           ul.nav.navbar-nav
             li.active
-              a(href='/adminPage') الأقســام
+              a(href='#') Home
             li
               a(href='#about') About
             li
@@ -36,16 +36,17 @@ block content
   .container
     .jumbotron
     .col-md-9.col-sm-9.col-xs-9
-      a.btn.btn-success(href='#add', role='button', data-toggle='modal')
         | إضافة مجلد
     table.table.table-condensed
       tr
-          td الاسم  
-          td تعديل
-          td الغاء
-      for dept in departments
+          td نوع الصنف 
+          td اضافة صنف جديد
+          td 
+          td 
+      for dept in dep
         tr
-          td #{dept.name}  
+          td #{dept.type}
+          td   
           td
             button#view.btn.btn-primary.btn-xs(data-title='Edit', data-toggle='modal',value="#{dept.iddepartments}", data-target='#edit', data-placement='top', rel='tooltip')
               span.glyphicon.glyphicon-eye-open
@@ -73,9 +74,9 @@ block content
             | إضافة قسم
         .modal-body
           form#form(role='form', action='/department/add/', method='post')
+            input(type='hidden', name='dept_id', value='')
             .form-group
               input#name.form-control.input-sm(type='text', name='name', placeholder='اسم القسم', value='')
-              input(type='hidden', name='deleted', value='1')
             input.btn.btn-primary.btn-block(type='submit', value='إضـــــافة')
 
 
