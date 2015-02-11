@@ -4,18 +4,18 @@ var mysqlMgr = require('./mysql').mysqlMgr,
 
 exports.EmployeeMgr = {
 /* Add item */
-    getEmployee : function(cb){
-      mysqlMgr.connect(function (conn) {
-          conn.query('SELECT * FROM `department`',function(err, result) {
-          conn.release();
-        if(err) {
-           util.log(err);
-       } else {
-            cb(result);
-          }
-         });
-      });
-     },
+    // getEmployee : function(cb){
+    //   mysqlMgr.connect(function (conn) {
+    //       conn.query('SELECT * FROM `department`',function(err, result) {
+    //       conn.release();
+    //     if(err) {
+    //        util.log(err);
+    //    } else {
+    //         cb(result);
+    //       }
+    //      });
+    //   });
+    //  },
 
      
     getEmployees: function(id,cb){
@@ -46,14 +46,14 @@ exports.EmployeeMgr = {
        },
    getEmployee: function(cb){
       mysqlMgr.connect(function (conn) {
-        console.log("dd");
+        console.log("djd")
         conn.query('SELECT e.idemployee , e.name empname , e.email , e.phoneNumber , e.username ,e.password , e.level , d.name dname  FROM `employee` `e`,`department` `d` where e.deleted = 1 and `e`.`iddepartment` = `d`.`iddepartments` ', function(err, result) {
           conn.release();
 
             if(err) {
               util.log(err);
             } else {
-
+               console.log("dd");
               cb(result);
             }
           });

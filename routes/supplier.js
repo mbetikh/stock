@@ -14,6 +14,12 @@ router.get('/addSupplier', function(req,res){
     res.render('addSupplier',{title: 'اضافة مورد جديد'});
 });
 
+router.post('/addSupplier', function(req,res){
+  supplierMgr.addSupplier(req.body,function(result){
+    res.redirect(/supplier/);
+});
+});
+
 
  router.get('/editsupplier/:id', function(req,res){
   supplierMgr.editSupplier(req.params.id,function(result){     

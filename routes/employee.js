@@ -1,19 +1,26 @@
 var express = require('express');
 var router = express.Router();
-var departmentMgr = require('../app/department').departmentMgr;
 var employeeMgr = require('../app/employee').EmployeeMgr;
+var departmentMgr = require('../app/department').departmentMgr;
 
 
 
-router.get('/', function(req,res){
-    res.render('employee',{title: 'ألموظفين'});
-});
+
 // router.get('/', function(req,res){
 //     res.render('employee',{title: 'ألموظفين'});
 // });
 
+// // router.get('/', function(req,res){
+//     res.render('employee',{title: 'ألموظفين'});
+// });
+router.get('/', function(req, res){
+  console.log("aaaa");
+  employeeMgr.getEmployee(function(result){
+    res.render('employee',{title: 'الاقسام',emp:result});
+  });
+});
 
-  
+
 router.get('/deleteEmp/:id', function(req,res){
   employeeMgr.deletEmployee(req.params.id,function(result){
    res.send(result);
@@ -37,12 +44,6 @@ router.get('/editEmployee', function(req,res){
     res.render('editEmployee',{title: 'أضافة موظف'});
 });
 
-router.get('/', function(req,res){
-  employeeMgr.getEmployee(function(result){
-    res.render('employee',{title:'ألموظيفين',emp:result});
-    console.log(result);
-  });
-});
 
 
 router.post('/edit', function(req,res){

@@ -2,12 +2,10 @@ extends layout
 block content
   font(size="4", color="black" , font="family" )
     div.container 
-      button#enable.btn.btn-primary تمكــين / تعطـــيل
-      //- #{employee[0].idemployee}
-      button#delete.btn.btn-danger.pull-right(href='#del', data-toggle='modal',value="") 
+      button#enable.btn.btn-danger.pull-right تمكــين / تعطـــيل
         span.glyphicon.glyphicon-trash
       .col-lg-1
-      a.btn.btn-primary.pull-left(type="button", href="#{url}") رجـــــوع
+      a.btn.btn-primary.pull-left(type="button", href="/employee/") رجـــــوع
     div.container 
       div.form-group 
         table#user.table.table-bordered.table-striped(style='clear: both')
