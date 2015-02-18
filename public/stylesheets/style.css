@@ -23,6 +23,7 @@ body {
 
 
 
+
 a {
   color: #fff;
 }
@@ -118,3 +119,38 @@ left: 560px;
 display: block;
 right: auto;
 }
+
+
+span.arrow {
+    margin-left: 6px;
+    height:17px;
+    background: url('http://i45.tinypic.com/f9ifz6.png') no-repeat left center;
+}
+label.error {
+    height:17px;
+    border-top:1px solid #99182c;
+    border-right:1px solid #99182c;
+    border-bottom:1px solid #99182c;
+    margin-left:9px;
+    padding:1px 5px 0px 5px;
+    font-size:small;
+}
+
+div.error {
+        position:absolute;
+        margin-top:-21px;
+     margin-left:150px;
+     border:2px solid #C0C097;
+        background-color:#fff;
+        color:white;
+        padding:3px;
+        text-align:left;
+        z-index:1;
+        color:#333333;
+     font:100% arial,helvetica,clean,sans-serif;
+     font-size:15px;
+     font-weight:bold;  
+    }
+
+
+    
