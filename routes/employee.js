@@ -1,20 +1,12 @@
-var express = require('express');
-var router = express.Router();
-var employeeMgr = require('../app/employee').EmployeeMgr;
-var departmentMgr = require('../app/department').departmentMgr;
+var express = require('express'),
+    router = express.Router(),
+    employeeMgr = require('../app/employee').employeeMgr,
+    departmentMgr = require('../app/department').departmentMgr,
+    userHelpers = require('../app/userHelpers');
 
 
 
-
-// router.get('/', function(req,res){
-//     res.render('employee',{title: 'ألموظفين'});
-// });
-
-// // router.get('/', function(req,res){
-//     res.render('employee',{title: 'ألموظفين'});
-// });
 router.get('/', function(req, res){
-  console.log("aaaa");
   employeeMgr.getEmployee(function(result){
     res.render('employee',{title: 'الاقسام',emp:result});
   });
@@ -30,6 +22,7 @@ router.get('/deleteEmp/:id', function(req,res){
 
 router.get('/addEmployee', function(req,res){
   departmentMgr.getDepartments(function(result){
+    console.log(result);
     res.render('addEmployee',{title: 'أضافة موظف',dep:result});
   });
 });
@@ -53,8 +46,11 @@ router.post('/edit', function(req,res){
 });
 
 router.post('/addEmployeee', function(req,res){
-  employeeMgr.addEmployee(req.body,function(result){
-    res.redirect('/employee/addEmployee');
+  // employeeMgr.addEmployee(req.body,function(result){
+  //   res.redirect('/employee/addEmployee');
+  // });
+  userHelpers.addUser(req.body,function(result){
+    res.redirect('/employee');
   });
 });
 
