@@ -1,0 +1,43 @@
+extends layout
+block content
+  body
+    div(role='tabpanel')
+      // Nav tabs
+      ul.nav.nav-tabs(role='tablist')
+        li.active(role='presentation')
+          a(href='#home', aria-controls='home', role='tab', data-toggle='tab') Home
+        li(role='presentation')
+          a(href='#profile', aria-controls='profile', role='tab', data-toggle='tab') Profile
+        li(role='presentation')
+          a(href='#messages', aria-controls='messages', role='tab', data-toggle='tab') Messages
+        li(role='presentation')
+          a(href='#settings', aria-controls='settings', role='tab', data-toggle='tab') Settings
+      // Tab panes
+      .tab-content
+        #home.tab-pane.active(role='tabpanel') ...
+        #profile.tab-pane(role='tabpanel') abdo
+        #messages.tab-pane(role='tabpanel') ...
+        #settings.tab-pane(role='tabpanel') ...
+  
+
+    
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+  
+    script(src="/javascripts/jquery-1.11.1.min.js") 
+    script(src="/javascripts/bootstrap.min.js")
+    script(src="/javascripts/jquery.validate.min.js")
+    script(src="/javascripts/acceptOrder.js")
+
+  //script(src="/javascripts/phone.js")

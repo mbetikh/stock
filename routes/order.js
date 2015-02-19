@@ -7,11 +7,6 @@ var router = express.Router();
 
 
 
-router.get('/test', function(req,res){
-   res.render('test',{title: 'أضافة موظف'});
-
-  });
-
 
 router.get('/getitem/:ido', function(req,res){
 	orderMgr.getitem(req.params.ido,function(result){ 
@@ -20,6 +15,16 @@ router.get('/getitem/:ido', function(req,res){
 	});
  
 });
+
+router.get('/things', function(req,res){
+     res.render('things',{title: 'أضافة موظف'});
+
+	});
+
+router.get('/acceptOrder', function(req,res){
+     res.render('acceptOrder',{title: 'acceptOrder'});
+
+	});
 
 
 router.get('/showOrder', function(req,res){

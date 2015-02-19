@@ -1,13 +1,11 @@
 extends layout
 block content
-  
-  div.container 
-      button#enable.btn.btn-primary تمكــين / تعطـــيل
-      button#delete.btn.btn-danger.pull-right(href='#del', data-toggle='modal',value="")
+  font(size="4", color="black" , font="family" )
+    div.container 
+      button#enable.btn.btn-danger.pull-right تمكــين / تعطـــيل
         span.glyphicon.glyphicon-trash
       .col-lg-1
-      a.btn.btn-primary.pull-left(type="button", href="#") رجـــــوع
-      p
+      a.btn.btn-primary.pull-left(type="button", href="/department/") رجـــــوع
     div.container 
       div.form-group 
         table#user.table.table-bordered.table-striped(style='clear: both')
@@ -28,7 +26,7 @@ block content
                 button#offdelete.btn.btn-danger(type='button',data-dismiss='modal') delete
                 button.btn.btn-success(data-dismiss='modal', type='button') cancel
 
-  // Placed at the end of the document so the pages load faster
+ 
   script(src='/javascripts/jquery-1.11.1.min.js')    
   script(src='/javascripts/bootstrap.min.js')
   script(src='/javascripts/bootstrap-editable.min.js')
