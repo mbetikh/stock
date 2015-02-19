@@ -11,30 +11,31 @@ block content
           row
             div.form.group.col-xs-4
               lable الاسم
-              input#email.form-control.text-left(dir="rtl", type="text",name="name", placeholder="الاسم",required="")
+              input#name.form-control.text-left(dir="rtl", type="text",name="name", placeholder="الاسم")
             div.form.group.col-xs-5
               lable البريد الاكتروني
-              input#email.form-control.text-left(dir="ltr", type="text",name="email", placeholder="البريد الإلكتروني",required="")
+              input#email.form-control.text-left(dir="ltr", type="text",name="email", placeholder="البريد الإلكتروني")
             div.form-group.col-xs-3
               lable رقم الهاتف
-              input#phone.form-control(type='text',dir="ltr", name='phoneNumber',placeholder="رقم الهاتف" )
+              input#phoneNumber.form-control(type='text',dir="ltr", name='phoneNumber',placeholder="رقم الهاتف" )
           row
             div.form-group.col-xs-6
               lable الرقم السري
-              input#password.form-control.text-left(dir="ltr", type="password",name="password", placeholder="*******",required="")
+              input#password.form-control.text-left(dir="ltr", type="password",name="password", placeholder="*******")
             div.form-group.col-xs-6
               lable تأكيد الرقم السري
-              input#confirmPassword.form-control.text-left(dir="ltr", type="password", placeholder="*******",required="")
+              input#confirmPassword.form-control.text-left(dir="ltr", type="password",name="confirmPassword" placeholder="*******")
           row
             div.form-group.form-group.col-xs-6
               lable. الادارة
               select.form-control#constit(name="iddepartment")
-                option(value="-1", selected="selected") الادارة
+                option(value="", selected="selected") الادارة
                 for d in dep
                   option(value="#{d.iddepartments}") #{d.name}
             div.form-group.form-group.col-xs-6
               lable. صﻻحية المستخدم
               select#region_name.form-control(type="text",name="level", placeholder="رقم اللجنة", required="",autofocus="")
+                option(value="") الرجاء الاختيار 
                 option(value="1") root 
                 option(value="2") admine 
                 option(value="3") user       
@@ -45,6 +46,5 @@ block content
   script(src="/javascripts/jquery-1.11.1.min.js") 
   script(src="/javascripts/bootstrap.min.js")
   script(src="/javascripts/jquery.validate.min.js")
-  //- script(src="/javascripts/adduser.js")
-  script(src="/javascripts/phone.js")
-
+  script(src="/javascripts/addEmployee.js")
+ 
