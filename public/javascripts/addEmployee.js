@@ -1,4 +1,8 @@
 $(document).ready(function(){
+   $.validator.addMethod("valueNotEquals", function(value, element, arg){
+    return arg != value;
+   }, "Value must not equal arg.");
+
   $("#form").validate({
     rules: {
       name: {
@@ -28,8 +32,11 @@ $(document).ready(function(){
         required : true,
         equalTo: "#password"
       },
+      iddepartment : {
+        valueNotEquals: "-1" 
+      },
       level: {
-        selectValidat: true,
+        valueNotEquals: "-1",
       }
     },
       messages: {
@@ -53,8 +60,11 @@ $(document).ready(function(){
           equalTo: "كلمة المرور ليست متطابقة"
         },
         level:{
-          selectValidat: "الرجاء اختيار صلاحية المستخدم"
+          valueNotEquals: "الرجاء اختيار صلاحية المستخدم",
         },
+        iddepartment : {
+          valueNotEquals: "الراجاء اختيار الادارة" ,
+        }
       },
     
   });
