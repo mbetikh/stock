@@ -10,31 +10,24 @@ block content
     div.panel.panel-default.form-signin 
       div.panel-heading.text-right
         h1.panel-title اضافة مورد
-      div.panel-body
-        
+      div.panel-body  
         form#form.form-signin(role="form" , action="/supplier/addSupplier", method="post")
           div.form-group
             lable اسم المورد
-            input#email.form-control.text-right(type="text",name="name", placeholder="اسم المورد",required="")
+            input#name.form-control.text-right(type="text",name="name", placeholder="اسم المورد")
           div.form-group
             lable اسم الشركة
-            input#email.form-control.text-right(type="text",name="companyName", placeholder="اسم الشركة",required="")
+            input#companyName.form-control.text-right(type="text",name="companyName", placeholder="اسم الشركة")
           div.form-group
             lable البريد الاكتروني
-            input#email.form-control.text-right(dir="ltr", type="text",name="Email", placeholder="البريد الإلكتروني",required="")
-          
-          
+            input#email.form-control.text-right(dir="ltr", type="email",name="email", placeholder="البريد الإلكتروني")
           div.form-group
             lable رقم الهاتف
-            input#phone.form-control.text-center(type='text', name='mobail',placeholder="رقم الهاتف" , style='width: 200px;')
-          
-                    
+            input#mobail.form-control.text-center(type='text', name='mobail',placeholder="رقم الهاتف" , style='width: 200px;')
           div.form-group.text-center
            button.btn.btn-lg.btn-primary(type="submit") إضافة جديد
-
   script(src="/javascripts/jquery-1.11.1.min.js") 
   script(src="/javascripts/bootstrap.min.js")
   script(src="/javascripts/jquery.validate.min.js")
-  //- script(src="/javascripts/adduser.js")
-  script(src="/javascripts/phone.js")
+  script(src="/javascripts/addSupplier.js")
 

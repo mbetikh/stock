@@ -4,15 +4,14 @@ var departmentMgr = require('../app/department').departmentMgr;
 var employeeMgr = require('../app/employee').EmployeeMgr;
 
 
-
 router.get('/', function(req,res){
-    res.render('employee',{title: 'ألموظفين'});
+  console.log("kjasnjdn");
+  employeeMgr.getEmployee(function(result){
+    console.log(result);
+    res.render('employee',{title:'ألموظيفين',emp:result});
+    console.log(result);
+  });
 });
-// router.get('/', function(req,res){
-//     res.render('employee',{title: 'ألموظفين'});
-// });
-
-
 
 router.get('/addEmployee', function(req,res){
   departmentMgr.getDepartments(function(result){
@@ -30,14 +29,6 @@ router.get('/editEmployee', function(req,res){
     res.render('editEmployee',{title: 'أضافة موظف'});
 });
 
-router.get('/', function(req,res){
-  employeeMgr.getEmployee(function(result){
-    res.render('employee',{title:'ألموظيفين',emp:result});
-    console.log(result);
-  });
-});
-
-
 router.post('/edit', function(req,res){
   employeeMgr.updateEmployee(req.body,function(result){
    res.send(result);
@@ -54,17 +45,9 @@ router.get('/editEmployee/:id', function(req,res){
   employeeMgr.getEmployees(req.params.id,function(result){
     departmentMgr.getDepartments(function(results){
     res.render('editEmployee',{title: 'تعديل موظف',Empl:result,dep:results});
-});
+    });
   });
 });
-
-
-
-// router.post('/addItem', function(req,res){
-//   itemMgr.addItem(req.body,function(result){
-//     console.log(result);
-
-//   });
 
 module.exports = router;
 
