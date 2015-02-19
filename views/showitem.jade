@@ -1,0 +1,58 @@
+extends layout
+block content
+  .container
+    .col-md-9.col-sm-9.col-xs-9
+      | الاصناف
+    
+      table.table.table-condensed
+        tr
+            td نوع الصنف 
+            td الكمية
+            td الكمية الموجودة
+            td تاريخ الادخال
+            td تعديل
+            td مسح 
+
+        for i in itemo
+            tr
+                td #{i.name} 
+                td #{i.quantity}
+                td #{i.remainder}
+                td #{i.create_time}
+                td 
+                  a#viewo.btn.btn-primary.btn-xs(href="")
+                    span.glyphicon.glyphicon-eye-open    
+                td      
+                  button#delete.btn.btn-danger.btn-xs(href='#del', data-toggle='modal',value="")
+                    span.glyphicon.glyphicon-trash 
+   #del.modal.fade(data-width='760',role="dialog",aria-labelledby="myModalLabel", tabindex='-1',aria-hidden="true")
+    .modal-dialog
+      .modal-content
+        .modal-headr.modal-header-danger
+          p.h1 هل أنت متأكد من  حدف ؟
+        .modal-body
+          p.h2 هل انت متأكد 
+          p 
+        .modal-footer
+          button#confdelete.btn.btn-danger(type='button',data-dismiss='modal') حدف
+          button.btn.btn-success(data-dismiss='modal', type='button') إلغاء 
+   #add.modal.fade.bs-example-modal-sm(tabindex='-1', role='dialog', aria-labelledby='mySmallModalLabel', aria-hidden='true')
+    .modal-dialog.modal-sm
+      .modal-content
+        .modal-header
+          button.close(type='button', data-dismiss='modal', aria-label='Close')
+            span(aria-hidden='true') 
+          h4#exampleModalLabel.modal-title
+            | إضافة قسم
+        .modal-body
+          form#form(role='form', action='/department/add/', method='post')
+            input(type='hidden', name='dept_id', value='')
+            .form-group
+              input#name.form-control.input-sm(type='text', name='name', placeholder='اسم القسم', value='')
+            input.btn.btn-primary.btn-block(type='submit', value='إضـــــافة')
+
+
+    // Placed at the end of the document so the pages load faster
+  script(src='/javascripts/jquery-1.11.1.min.js')    
+  script(src='/javascripts/bootstrap.min.js')
+  script(src='/javascripts/item.js')
