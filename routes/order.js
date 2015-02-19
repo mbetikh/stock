@@ -32,7 +32,7 @@ router.get('/showOrder', function(req,res){
           orderMgr.getOrder(req.body,function(result){
   	
   	         orderMgr.getOrdd(req.body,function(result2){
-  	         	 departmentMgr.getDepartments(req.body,function(result3){
+  	         	 departmentMgr.getDepartments(function(result3){
   	         	 orderMgr.getOrderInfo(function(resultz){
              		console.log(resultz);
                 res.render('showOrder',{title: 'أضافة موظف',ord:result,ordd:result2,emp:result3,orderinfo:resultz});

@@ -11,6 +11,8 @@ width: 150px;
   margin: 40px auto;
   
 }
+
+
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
@@ -22,11 +24,6 @@ body {
 }
 
 
-
-
-a {
-  color: #fff;
-}
 
 .p-set
 {
@@ -153,10 +150,3 @@ div.error {
     }
 
 
-<<<<<<< HEAD
-
-
-    
-=======
-    
->>>>>>> 2b4a4909c0ec256ef012fc023c53b051a46dc6ea

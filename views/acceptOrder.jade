@@ -1,32 +1,63 @@
 extends layout
 block content
-  body
-    div(role='tabpanel')
-      // Nav tabs
-      ul.nav.nav-tabs(role='tablist')
-        li.active(role='presentation')
-          a(href='#home', aria-controls='home', role='tab', data-toggle='tab') Home
-        li(role='presentation')
-          a(href='#profile', aria-controls='profile', role='tab', data-toggle='tab') Profile
-        li(role='presentation')
-          a(href='#messages', aria-controls='messages', role='tab', data-toggle='tab') Messages
-        li(role='presentation')
-          a(href='#settings', aria-controls='settings', role='tab', data-toggle='tab') Settings
-      // Tab panes
-      .tab-content
-        #home.tab-pane.active(role='tabpanel') ...
-        #profile.tab-pane(role='tabpanel') abdo
-        #messages.tab-pane(role='tabpanel') ...
-        #settings.tab-pane(role='tabpanel') ...
-  
+  div.container
+    div.header
+      
+      ul.nav.nav-pills.pull-right
+      h3.text-muted.text-left 
+        a(href="/")
+          img(src="../images/22.png")
+      .btn.btn-primary.pull-left(type="button", href="/root") رجـــــوع
+    div.panel.panel-default.form-signin 
+      div.panel-heading.text-right
+        h1.panel-title إضافة موظف
+      div.panel-body
+ 
+        div(role="tabpanel")
+          ul.nav.nav-tabs(role="tablist")
+            li.active(role="presentation")
+              a(href="#home", aria-controls="home",role="tab", data-toggle="tab") الطلبات الغير مأكدة
+            li(role="presentation")
+              a(href="#profile", aria-controls="profile",role="tab", data-toggle="tab") الطلبات المأكدة 
+          div.tab-content
+            div.tab-pane.active(role="tabpane", id="home") 
+              table.table.table-condensed
+                tr
+                    td إسم السلعة   
+                    td الكمية
+                    td طلب الموظف
+                    td قسم الموظف    
+                    td تأكيد الطلب
+                  tr
+                    td hi 
+                    td hellow
+                    td go
+                    td see  
+                    td    
 
-    
+                      button#delete.btn.btn-success.btn-xs(href='#del', data-toggle='modal',value="")
+                        span.glyphicon.glyphicon-ok
+             #del.modal.fade(data-width='760',role="dialog",aria-labelledby="myModalLabel", tabindex='-1',aria-hidden="true")
+              .modal-dialog
+                .modal-content
+                  .modal-headr.modal-header-danger
+                    p.h1 هل انت متاكد من الغاء الطلب ؟
+                  .modal-body
+                    p.h2 تأكيد الطلب
+                    p 
+                  .modal-footer
+                    button#confdelete.btn.btn-danger(type='button',data-dismiss='modal') حدف
+                    button.btn.btn-success(data-dismiss='modal', type='button') إلغاء 
+            
 
 
 
 
 
 
+
+
+            div.tab-pane(role="tabpanel", id="profile") this is the Profile
 
 
 
@@ -39,5 +70,3 @@ block content
     script(src="/javascripts/bootstrap.min.js")
     script(src="/javascripts/jquery.validate.min.js")
     script(src="/javascripts/acceptOrder.js")
-
-  //script(src="/javascripts/phone.js")
