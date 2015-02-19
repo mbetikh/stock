@@ -31,9 +31,9 @@ router.get('/login', function(req,res){
 });
 
 
-router.get('/addItemm', function(req,res){
-  res.render('addItemm',{title: 'أضافة صنف'});
-});
+// router.get('/addItemm', function(req,res){
+//   res.render('addItemm',{title: 'أضافة صنف'});
+// });
 
 
 
@@ -48,13 +48,6 @@ router.get('/enterTest', function(req,res){
 router.get('/adminPage', function(req,res){
   res.render('adminPage',{title: 'صفـحة الأدارة'});
 })
-
-router.post('/addItem', function(req,res){
-  itemMgr.addItem(req.body,function(result){
-    console.log(result);
-
-  });
-});
 
 
 module.exports = router;
