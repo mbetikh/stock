@@ -15,7 +15,6 @@ router.get('/login', function(req,res){
 });
 
 
-
 router.post('/edit', function(req,res){
   departmentMgr.update(req.body,function(result){
    res.send(result);
@@ -37,7 +36,6 @@ router.get('/editdep/:id', function(req,res){
 
 router.post('/add', function(req,res){
   departmentMgr.addDp(req.body,function(result){
-    console.log(result);
 
   });
   });

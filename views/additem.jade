@@ -12,25 +12,25 @@ block content
         h1.panel-title اضافة صنف
       div.panel-body
        form#form.form-signin(role="form" , action="/item/additem", method="post")
-          .row.col-md-12
-            .col-md-4
+          .row
+            .col-xs-6 
               div.form-group.text-right
                 lable نوع الصنف
                   select.form-control#iditem_type(name="id_item_info_id",style='width: 500px;')
                     option(value="-1", selected="selected") الصنف
                       for d in item
                         option(value="#{d.item_info_id}",name="id_item_info_id") #{d.Name} 
-            .col-md-4
+              
               div.form-group 
                 a.btn.btn-success(href='#newitem', role='button',data-toggle='modal') صنف جديد    
-            
-            div.form-group
-              lable المورد
-              font(size="4", color="black" , face="cursive" )
-                select.form-control#getiteme(name="iddepartment",style='width: 500px;')   
-            div.form-group
-              a.btn.btn-success(href='#', role='button') مورد جديد    
-        
+          
+              div.form-group
+                lable المورد
+                font(size="4", color="black" , face="cursive" )
+                  select.form-control#getiteme(name="iddepartment",style='width: 500px;')   
+              div.form-group
+                a.btn.btn-success(href='#', role='button') مورد جديد    
+          
           div.form-group
             lable الكمية
             input#quantity.form-control.text-left(dir="ltr", type="text",name="quantity", placeholder=" ",required="")

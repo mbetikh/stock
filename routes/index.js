@@ -9,15 +9,11 @@ router.get('/', function(req, res) {
   res.render('login', { title: 'دخول' });
 });
 
-// router.get('/login', function(req,res){
-//   res.render('login',{title: 'دخول'});
+
+// router.get('/employee', function(req,res){
+//     res.render('employee',{title: 'ألموظفين'});
 // });
-router.get('/employee', function(req,res){
-    res.render('employee',{title: 'ألموظفين'});
-});
-// router.get('/', function(req, res) {
-//   res.render('department', { title: 'Express' });
-// });
+
 
 
 router.get('/newItem', function(req,res){
@@ -36,18 +32,18 @@ router.get('/login', function(req,res){
 // });
 
 
-
-
-
-
 router.get('/enterTest', function(req,res){
   res.render('enterTest',{title: 'test'});
 });
 
-
 router.get('/adminPage', function(req,res){
   res.render('adminPage',{title: 'صفـحة الأدارة'});
 })
+
+router.post('/addItem', function(req,res){
+  itemMgr.addItem(req.body,function(result){
+  });
+});
 
 
 module.exports = router;

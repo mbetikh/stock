@@ -27,7 +27,7 @@ addItemtype : function(body,cb){
     },
 /* Add item */
   addItem : function(body,cb){
-    console.log(body);      
+
     mysqlMgr.connect(function (conn) {
       
       var id_item_info_id = body.id_item_info_id;

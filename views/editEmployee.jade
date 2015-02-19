@@ -1,0 +1,63 @@
+extends layout
+block content
+  font(size="4", color="black" , font="family" )
+    div.container 
+      button#enable.btn.btn-danger.pull-right تمكــين / تعطـــيل
+        span.glyphicon.glyphicon-trash
+      .col-lg-1
+      a.btn.btn-primary.pull-left(type="button", href="/employee/") رجـــــوع
+    div.container 
+      div.form-group 
+        table#user.table.table-bordered.table-striped(style='clear: both')
+          tbody
+            tr
+              td(width='35%') اسم الموظف 
+              td(width='65%')
+                a#name(href='#', data-type='text', data-pk='#{Empl[0].idemployee}', data-title='اﻻسم' data-value='#{Empl[0].name}') #{Empl[0].name}
+            tr
+              td(width='35%') البريد الالكتروني
+              td(width='65%')
+                a#email(href='#', data-type='text', data-pk='#{Empl[0].idemployee}', data-title='البريد الإلكتروني' data-value='#{Empl[0].email}') #{Empl[0].email}
+            tr
+              td(width='35%') أسم المستخدم
+              td(width='65%')
+                a#username(href='#', data-type='text', data-pk='#{Empl[0].idemployee}', data-title='أسم المستخدم' data-value='#{Empl[0].username}') #{Empl[0].username}
+            tr
+              td(width='35%') الرقم السري
+              td(width='65%')
+                a#password(href='#', data-type='text', data-pk='#{Empl[0].idemployee}', data-title='الرقم السري' data-value='#{Empl[0].password}') #{Empl[0].password}
+            tr
+              td(width='35%') رقم الهاتف
+              td(width='65%')
+                a#phoneNumber(href='#', data-type='text', data-pk='#{Empl[0].idemployee}', data-title='رقم الهاتف ' data-value='#{Empl[0].phoneNumber}') #{Empl[0].phoneNumber}
+            tr
+              td(width='35%') الصﻻحية
+              td(width='65%')
+                a#level(href='#', data-type='select', data-pk='#{Empl[0].idemployee}', data-value='#{Empl[0].level}',  data-title='الصلاحية')  
+
+
+            tr
+              td(width='35%') القسم
+              td(width='65%')
+                a#iddepartment(href='#', data-type='select', data-pk='#{Empl[0].idemployee}', data-value='#{Empl[0].iddepartment}',  data-title='القسم')  
+
+    #del.modal.fade(data-width='760',role="dialog",aria-labelledby="myModalLabel", tabindex='-1',aria-hidden="true")
+          .modal-dialog
+            .modal-content
+              .modal-headr.modal-header-danger
+                 p.h1 هل أنت متأكد من  حدف ؟
+              .modal-body
+                p.h2 هل انت متأكد 
+                p 
+              .modal-footer
+                button#deleteemployee.btn.btn-danger(type='button',data-dismiss='modal') حدف
+                button.btn.btn-success(data-dismiss='modal', type='button') إلغاء
+
+
+
+              
+  script(src="/javascripts/jquery-1.11.1.min.js") 
+  script(src="/javascripts/bootstrap.min.js")
+  script(src="/javascripts/jquery.validate.min.js")
+  script(src="/javascripts/bootstrap-editable.min.js")
+  script(src="/javascripts/editEmployee.js") 

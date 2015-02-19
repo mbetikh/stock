@@ -6,7 +6,7 @@ exports.departmentMgr = {
 /* Add item */
   getDepartments : function(cb){
     mysqlMgr.connect(function (conn) {
-      conn.query('SELECT * FROM `department` where deleted = 1', function(err, result) {
+      conn.query('SELECT * FROM `department` ', function(err, result) {
         conn.release();
         if(err) {
           util.log(err);
@@ -66,7 +66,6 @@ exports.departmentMgr = {
     });
   },
 }
-
 
 
 
