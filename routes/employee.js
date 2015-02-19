@@ -6,7 +6,7 @@ var express = require('express'),
 
 
 
-router.get('/', function(req, res){
+router.get('/',userHelpers.isRoot, function(req, res){
   employeeMgr.getEmployee(function(result){
     res.render('employee',{title: 'الاقسام',emp:result});
   });

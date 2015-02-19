@@ -4,7 +4,7 @@ var mysqlMgr = require('./mysql').mysqlMgr,
 
 exports.departmentMgr = {
 /* Add item */
-  getDepartments : function(body,cb){
+  getDepartments : function(cb){
     mysqlMgr.connect(function (conn) {
       conn.query('SELECT * FROM `department` ', function(err, result) {
         conn.release();
