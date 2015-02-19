@@ -1,11 +1,6 @@
 extends layout
 block content
   div.container
-    div.header
-      ul.nav.nav-pills.pull-right
-      h3.text-muted.text-left 
-        a(href="/")
-          img(src="../images/22.png")
     a.btn.btn-primary.pull-left(type="button", href="/employee") رجـــــوع
     div.panel.panel-default.form-signin 
       div.panel-heading.text-right
@@ -13,47 +8,43 @@ block content
       div.panel-body
 
         form#form.form-signin(role="form" , action="/employee/addEmployeee", method="post")
-
-          div.form-group
-            lable الاسم
-            input#email.form-control.text-left(dir="ltr", type="text",name="name", placeholder="البريد الإلكتروني",required="")
-         
-          div.form-group
-            lable البريد الاكتروني
-            input#email.form-control.text-left(dir="ltr", type="text",name="email", placeholder="البريد الإلكتروني",required="")
-
-          div.form-group
-            lable أسم المستخدم
-            input#email.form-control.text-left(dir="ltr", type="text",name="username", placeholder="البريد الإلكتروني",required="")
-          div.form-group
-            lable الرقم السري
-            input#email.form-control.text-left(dir="ltr", type="text",name="password", placeholder="البريد الإلكتروني",required="")
-
-
-          div.form-group
-            lable رقم الهاتف
-            input#phone.form-control(type='text', name='phoneNumber',placeholder="رقم الهاتف" , style='width: 200px;')
-          //Select for choose manager of constituencies
-          div.form-group
-            font(size="4", color="black" , face="cursive" )
-              select.form-control#constit(name="iddepartment")
-                option(value="-1", selected="selected") القسم
+          row
+            div.form.group.col-xs-4
+              lable الاسم
+              input#name.form-control.text-left(dir="rtl", type="text",name="name", placeholder="الاسم")
+            div.form.group.col-xs-5
+              lable البريد الاكتروني
+              input#email.form-control.text-left(dir="ltr", type="text",name="email", placeholder="البريد الإلكتروني")
+            div.form-group.col-xs-3
+              lable رقم الهاتف
+              input#phoneNumber.form-control(type='text',dir="ltr", name='phoneNumber',placeholder="رقم الهاتف" )
+          row
+            div.form-group.col-xs-6
+              lable الرقم السري
+              input#password.form-control.text-left(dir="ltr", type="password",name="password", placeholder="*******")
+            div.form-group.col-xs-6
+              lable تأكيد الرقم السري
+              input#confirmPassword.form-control.text-left(dir="ltr", type="password",name="confirmPassword" placeholder="*******")
+          row
+            div.form-group.form-group.col-xs-6
+              lable. الادارة
+              select.form-control#iddepartment(name="iddepartment")
+                option(value="-1") الراجاء الاختيار 
                 for d in dep
                   option(value="#{d.iddepartments}") #{d.name}
-
-          div.form-group
-            lable. صﻻحية المستخدم
-            select#region_name.form-control(type="text",name="level", placeholder="رقم اللجنة", required="",autofocus="")
-              option(value="1") root 
-              option(value="2") admine 
-              option(value="3") user        
-      
-          div.form-group.text-center
-           button.btn.btn-lg.btn-primary(type="submit") إضافة
+            div.form-group.form-group.col-xs-6
+              lable. صﻻحية المستخدم
+              select#level.form-control(type="text",name="level", placeholder="رقم اللجنة",autofocus="")
+                option(value="-1") الرجاء الاختيار 
+                option(value="1") root 
+                option(value="2") admine 
+                option(value="3") user       
+          row 
+            div.form-group.text-center.col-md-6.col-md-offset-3
+             button.btn.btn-lg.btn-primary(type="submit") إضافة
 
   script(src="/javascripts/jquery-1.11.1.min.js") 
   script(src="/javascripts/bootstrap.min.js")
   script(src="/javascripts/jquery.validate.min.js")
-  //- script(src="/javascripts/adduser.js")
-  script(src="/javascripts/phone.js")
-
+  script(src="/javascripts/addEmployee.js")
+ 

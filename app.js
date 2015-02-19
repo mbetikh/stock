@@ -1,4 +1,5 @@
 var express = require('express');
+var session = require('express-session');
 var path = require('path');
 var favicon = require('static-favicon');
 var logger = require('morgan');
@@ -11,6 +12,8 @@ var department = require('./routes/department');
 var employee = require('./routes/employee');
 var supplier = require('./routes/supplier');
 var order = require('./routes/order');
+var item = require('./routes/item');
+var passport = require('passport');
 var app = express();
 
 // view engine setup
@@ -23,12 +26,17 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(session({secret: 'MctDev',resave: true,saveUninitialized: true}));
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use('/', routes);
 app.use('/users', users);
 app.use('/stock',stock);
 app.use('/department',department);
 app.use('/employee',employee);
+app.use('/order',order);
+app.use('/item',item);
 app.use('/supplier',supplier);
 app.use('/addSupplier',supplier);
 app.use('/order',order); 

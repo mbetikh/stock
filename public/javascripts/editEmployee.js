@@ -71,7 +71,6 @@
   });
 
     $.get('/employee/getdep',function(result){
-      alert(result);
     for ( var i = 0 ; i< result.length; i++){
       var k = new Object({id : i,value : result[i].iddepartments, text : result[i].name});
       $.resul.push(k);

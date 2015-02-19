@@ -19,6 +19,7 @@ router.post('/addSupplier', function(req,res){
   });
 });
 
+
 router.get('/editsupplier/:id', function(req,res){
   supplierMgr.editSupplier(req.params.id,function(result){     
   	res.render('editsupplier',{title: 'دخول',editsupplier:result});

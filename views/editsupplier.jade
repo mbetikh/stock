@@ -1,9 +1,11 @@
 extends layout
 block content
   div.container 
-      button#enable.btn.btn-primary تمكــين / تعطـــيل
-      a.btn.btn-primary.pull-left(type="button", href="/supplier") رجـــــوع
-      p
+    button#enable.btn.btn-danger.pull-right تمكــين / تعطـــيل
+      span.glyphicon.glyphicon-trash
+    .col-lg-1
+    a.btn.btn-primary.pull-left(type="button", href="/supplier/") رجـــــوع
+    p
     div.container 
       div.form-group 
         table#user.table.table-bordered.table-striped(style='clear: both')

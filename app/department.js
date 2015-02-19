@@ -4,9 +4,9 @@ var mysqlMgr = require('./mysql').mysqlMgr,
 
 exports.departmentMgr = {
 /* Add item */
-  getDepartments: function(cb){
+  getDepartments : function(cb){
     mysqlMgr.connect(function (conn) {
-      conn.query('SELECT * FROM `department` where deleted = 1', function(err, result) {
+      conn.query('SELECT * FROM `department` ', function(err, result) {
         conn.release();
         if(err) {
           util.log(err);
@@ -16,10 +16,10 @@ exports.departmentMgr = {
       });
     });
   },
-
   getDepartment: function(id,cb){
     mysqlMgr.connect(function (conn) {
       conn.query('SELECT * FROM `department` where iddepartments = ?',id, function(err, result) {
+        conn.release();
         if(err) {
           util.log(err);
         } else {
@@ -27,8 +27,7 @@ exports.departmentMgr = {
         }
       });
     });
-
-    },
+  },
   update: function(body,cb){
     mysqlMgr.connect(function (conn) {
       conn.query('update `department` set '+body.name+' = ? WHERE`iddepartments`=?',[body.value,body.pk], function(err, result) {
@@ -67,7 +66,6 @@ exports.departmentMgr = {
     });
   },
 }
-
 
 
 
