@@ -1,9 +1,15 @@
 extends layout
 block content
-  .container
-    .col-md-9.col-sm-9.col-xs-9
-      | الاصناف
-    
+  div.container
+    div.header
+      ul.nav.nav-pills.pull-right
+      h3.text-muted.text-left 
+        a(href="/")
+          img.img-responsive(src="../../images/22.png" ,style='width: 150px;')
+    a.btn.btn-primary.pull-left(type="button", href="/item") رجـــــوع
+    div.panel.panel-default.form-signin 
+      div.panel-heading.text-right
+        h1.panel-title الاصناف
       table.table.table-condensed
         tr
             td نوع الصنف 
@@ -15,15 +21,15 @@ block content
 
         for i in itemo
             tr
-                td #{i.name} 
+                td #{i.Name} 
                 td #{i.quantity}
                 td #{i.remainder}
-                td #{i.create_time}
+                td #{i.create_time.getDate()} / #{i.create_time.getMonth()} / #{i.create_time.getFullYear()}
                 td 
-                  a#viewo.btn.btn-primary.btn-xs(href="")
+                  button#view.btn.btn-primary.btn-xs(data-title='Edit', data-toggle='modal',value="#{i.iditem}", data-target='#edit', data-placement='top', rel='tooltip')
                     span.glyphicon.glyphicon-eye-open    
                 td      
-                  button#delete.btn.btn-danger.btn-xs(href='#del', data-toggle='modal',value="")
+                  button#delete.btn.btn-danger.btn-xs(href='#del', data-toggle='modal',value="#{i.iditem}")
                     span.glyphicon.glyphicon-trash 
    #del.modal.fade(data-width='760',role="dialog",aria-labelledby="myModalLabel", tabindex='-1',aria-hidden="true")
     .modal-dialog
@@ -36,23 +42,8 @@ block content
         .modal-footer
           button#confdelete.btn.btn-danger(type='button',data-dismiss='modal') حدف
           button.btn.btn-success(data-dismiss='modal', type='button') إلغاء 
-   #add.modal.fade.bs-example-modal-sm(tabindex='-1', role='dialog', aria-labelledby='mySmallModalLabel', aria-hidden='true')
-    .modal-dialog.modal-sm
-      .modal-content
-        .modal-header
-          button.close(type='button', data-dismiss='modal', aria-label='Close')
-            span(aria-hidden='true') 
-          h4#exampleModalLabel.modal-title
-            | إضافة قسم
-        .modal-body
-          form#form(role='form', action='/department/add/', method='post')
-            input(type='hidden', name='dept_id', value='')
-            .form-group
-              input#name.form-control.input-sm(type='text', name='name', placeholder='اسم القسم', value='')
-            input.btn.btn-primary.btn-block(type='submit', value='إضـــــافة')
-
-
     // Placed at the end of the document so the pages load faster
   script(src='/javascripts/jquery-1.11.1.min.js')    
   script(src='/javascripts/bootstrap.min.js')
   script(src='/javascripts/item.js')
+  script(src='/javascripts/edititem.js')
