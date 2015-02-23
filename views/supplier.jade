@@ -32,6 +32,16 @@ block content
                 td      
                   button#delete.btn.btn-danger.btn-xs(href='#del', data-toggle='modal',value="#{sup.idsupplier}")
                     span.glyphicon.glyphicon-trash 
+          if 1 
+            div.text-center
+              ul.pagination
+                li(class='#')
+                  a(href='?p=#') السابق
+              
+                  li(class="#")
+                    a(href='?p=#')
+                  li(class="#")
+                    a(href='?p=') التالي        
     div.form-group.text-center             
       a.btn.btn-primary(type="button", href="/supplier/addSupplier") إضـــــافة      
       #del.modal.fade(data-width='760',role="dialog",aria-labelledby="myModalLabel", tabindex='-1',aria-hidden="true")
