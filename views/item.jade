@@ -1,9 +1,11 @@
 extends layout
 block content
   .container
-    
+    h3.text-muted.text-left 
+      a(href="/")
+        img.img-responsive(src="../../images/22.png" ,style='width: 150px;')
     .col-md-9.col-sm-9.col-xs-9
-       h3  الاصناف الرئيسية
+      h3  الاصناف الرئيسية
     div.form-group 
       a.btn.btn-success(href='#newitem', role='button',data-toggle='modal') صنف جديد        
     br
@@ -36,37 +38,22 @@ block content
         .modal-footer
           button#confdelete.btn.btn-danger(type='button',data-dismiss='modal') حدف
           button.btn.btn-success(data-dismiss='modal', type='button') إلغاء 
-   #add.modal.fade.bs-example-modal-sm(tabindex='-1', role='dialog', aria-labelledby='mySmallModalLabel', aria-hidden='true')
-    .modal-dialog.modal-sm
-      .modal-content
-        .modal-header
-          button.close(type='button', data-dismiss='modal', aria-label='Close')
-            span(aria-hidden='true') 
-          h4#exampleModalLabel.modal-title
-            | إضافة قسم
-        .modal-body
-          form#form(role='form', action='/department/add/', method='post')
-            input(type='hidden', name='dept_id', value='')
-            .form-group
-              input#name.form-control.input-sm(type='text', name='name', placeholder='اسم القسم', value='')
-            input.btn.btn-primary.btn-block(type='submit', value='إضـــــافة')
    #newitem.modal.fade(data-width='760',role="dialog",aria-labelledby="myModalLabel", tabindex='-1',aria-hidden="true")
-        .modal-dialog
-          .modal-content
-            .modal-headr.modal-header-success
-              button.btn.pull-left.btn-danger(data-dismiss='modal', type='button') إلغاء
-              button.close(type="button",data-dismiss="modal",aria-hidden="true")
-              h1 أضافة صنف رئيسي جديد 
-            .row
-              .col-sm-12.col-md-11.col.col-md.offset-4
-                  .modal-body
-                      form#form.form-signin(role='form1' , action='/itemؤ', method='post') 
-                        div.form-group
-                          lable.h3 اسم الصنف  
-                          input#type.form-control(type="text",name="type", placeholder="اسم الصنف",autofocus="")                            
-                        div.form-group.text-center
-                          button#Eitem.btn.btn-lg.btn-primary(type="submit",aria-hidden="true",data-dismiss="modal") إضـافة      
-    
+    .modal-dialog
+      .modal-content
+        .modal-headr.modal-header-success
+          button.btn.pull-left.btn-danger(data-dismiss='modal', type='button') إلغاء
+          button.close(type="button",data-dismiss="modal",aria-hidden="true")
+          h1 أضافة صنف رئيسي جديد 
+        .row
+          .col-sm-12.col-md-11.col.col-md.offset-4
+            .modal-body
+              form#form.form-signin(role="form" , action="/item/addi", method="post") 
+                div.form-group
+                  lable.h3 اسم الصنف  
+                  input#type.form-control(type="text",name="type", placeholder="اسم الصنف",autofocus="")                            
+                div.form-group.text-center
+                  button#aitem.btn.btn-lg.btn-primary(type="submit") إضـافة     
 
     // Placed at the end of the document so the pages load faster
   script(src='/javascripts/jquery-1.11.1.min.js')    

@@ -5,52 +5,54 @@ block content
       ul.nav.nav-pills.pull-right
       h3.text-muted.text-left 
         a(href="/")
-          img(src="../images/22.png")
-    a.btn.btn-primary.pull-left(type="button", href="") رجـــــوع
+          img.img-responsive(src="../../images/22.png" ,style='width: 150px;')
+    a.btn.btn-primary.pull-left(type="button", href="/item") رجـــــوع
     div.panel.panel-default.form-signin 
       div.panel-heading.text-right
         h1.panel-title اضافة صنف
       div.panel-body
-       form#form.form-signin(role="form" , action="/item/additem", method="post")
-          .row
-            .col-xs-6 
-              div.form-group.text-right
-                lable نوع الصنف
-                  select.form-control#iditem_type(name="id_item_info_id",style='width: 500px;')
-                    option(value="-1", selected="selected") الصنف
-                      for d in item
-                        option(value="#{d.item_info_id}",name="id_item_info_id") #{d.Name} 
+        form#form.form-signin(role="form" , action="/item/additem", method="post")
+          row 
+            div.form.group.col-xs-6
+              select.form-control#iditem_type(name="id_item_info_id")
+                option(value="-1", selected="selected") اختر نوع الصنف
+                  for d in item
+                    option(value="#{d.item_info_id}",name="id_item_info_id") #{d.Name} 
               
-              div.form-group 
-                a.btn.btn-success(href='#newitem', role='button',data-toggle='modal') صنف جديد    
-          
-              div.form-group
-                lable المورد
-                font(size="4", color="black" , face="cursive" )
-                  select.form-control#getiteme(name="iddepartment",style='width: 500px;')   
-              div.form-group
-                a.btn.btn-success(href='#', role='button') مورد جديد    
-          
-          div.form-group
-            lable الكمية
-            input#quantity.form-control.text-left(dir="ltr", type="text",name="quantity", placeholder=" ",required="")
-          div.form-groupremainder
-            lable المتبقي
-            input#remainder.form-control.text-left(dir="ltr", type="text",name="remainder", placeholder=" ",required="")
-          div.form-group
-            lable الوصف
-            textarea#description.form-control(rows='3',dir="ltr", name="description", placeholder=" ",required="")
+            div.form.group.col-xs-6 
+              a.btn.btn-success(href='#newitem', role='button',data-toggle='modal',style='width: 200px;') صنف جديد    
+                span.glyphicon.glyphicon-plus 
+          row 
+            div.form-group.col-xs-8
+              label 
+              select.form-control#getiteme(name="getiteme")
+                option(value="-1", selected="selected") اختر المورد   
+            div.form-group.col-xs-2
+              label
+              a.btn.btn-success(href='/supplier/addSupplier', role='button') مورد جديد 
+                span.glyphicon.glyphicon-plus    
+            div.form-group.col-xs-2
+              label
+              a#newsupp.btn.btn-success(href='#', role='button' ,value = "1",name = "bb") الموردين 
+                span.glyphicon.glyphicon-plus
+          row
+            div.form-group.form-group.col-xs-12
+              lable الكمية
+              input#quantity.form-control.text-left(dir="ltr", type="text",name="quantity", placeholder=" ",required="")
+            //- div.form-group.form-group.col-xs-6
+            //-   //- lable المتبقي
+              //- input#remainder.form-control.text-left(dir="ltr", type="text",name="remainder", placeholder=" ",required="")
+          row
+            div.form-group.form-group.col-xs-12
+              lable الوصف
+              textarea#description.form-control(rows='3',dir="ltr", name="description", placeholder=" ",required="")
           div.form-group
             //- lable الرئيسي
-            input#dele.form-control.text-left(dir="ltr", type="hidden",name="item_type_iditem_type", placeholder=" ",required="",value="#{item[0].item_type_iditem_type}")
-          div.form-group
-            lable موجود
-            input#deleted.form-control.text-left(dir="ltr", type="text",name="deleted", placeholder=" ",required="",style='width: 200px;') 
-          
+            input#dele.form-control.text-left(dir="ltr", type="hidden",name="item_type_iditem_type", placeholder=" ",required="",value="#{id}")
           //Select for choose manager of constituencies 
-          div.form-group 
-          div.form-group.text-center
-            button.btn.btn-lg.btn-primary(type="submit") إضافة
+          row 
+            div.form-group.text-center.col-md-6.col-md-offset-3
+              button.btn.btn-lg.btn-primary(type="submit") إضافة
           #newitem.modal.fade(data-width='760',role="dialog",aria-labelledby="myModalLabel", tabindex='-1',aria-hidden="true")
             .modal-dialog
               .modal-content
@@ -69,8 +71,7 @@ block content
                               lable.h3 الرقم التسلسلي
                               input#Barcode.form-control(type="text",name="Barcode", placeholder="الرقم التسلسلي",autofocus="")
                             div.form-group.text-center
-                              button#Eitem.btn.btn-lg.btn-primary(type="button",aria-hidden="true",data-dismiss="modal") إضـافة      
-        
+                              button#Eitem.btn.btn-lg.btn-primary(type="button",aria-hidden="true",data-dismiss="modal") إضـافة         
 
   // Placed at the end of the document so the pages load faster
   script(src='/javascripts/jquery-1.11.1.min.js')    

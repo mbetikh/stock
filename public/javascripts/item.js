@@ -10,7 +10,7 @@ $(document).ready(function(){
         $.get('/item/getitem/'+id,function(result){ 
         
           for ( var i = 0; i < result.length;  i++ ) {
-              alert(id);
+              
               $('#getiteme').append("<option value = '"+result[i].supplier_idsupplier+"'>"+result[i].name+"</option>");
           }
           
@@ -20,18 +20,25 @@ $(document).ready(function(){
   });
 
   $("#Eitem").click( function(){       
-     // alert("mohAMED");
     var length = $('#iditem_type > option').length;
+    var vd = length + 1;
     var valu = $("#Name").val(); 
     $('#iditem_type').append("<option value = '"+length+"'>"+valu+"</option>");
     $('#iditem_type').val(length);
     $.get('/item/getitem/',function(result1){
       for ( var i = 0; i < result1.length;  i++ ) {
-        $('#getiteme').append("<option value = '"+result1[i].supplier_idsupplier+"'>"+result1[i].name+"</option>");
+        
+        $('#getiteme').append("<option value = '"+result1[i].idsupplier+"'>"+result1[i].name+"</option>");
       }
     });
   
    });
-  
+  $("#newsupp").click( function(){
+    $.get('/item/getitem/',function(result1){
+      for ( var i = 0; i < result1.length;  i++ ) {
+        $('#getiteme').append("<option value = '"+result1[i].idsupplier+"'>"+result1[i].name+"</option>");
+      }
+  });
 
+ });   
 });

@@ -1,0 +1,45 @@
+extends layout
+block content
+  div.container 
+      button#enable.btn.btn-danger.pull-right تمكــين / تعطـــيل
+      .col-lg-1
+      a.btn.btn-primary.pull-left(type="button", href="/item/showitem/#{edititem[0].item_type_iditem_type}") رجـــــوع
+      p
+    div.container 
+      div.form-group 
+        table#user.table.table-bordered.table-striped(style='clear: both')
+          tbody
+            tr
+              td(width='35%') اســـــم الصـنـــــف
+              td(width='65%') 
+                a#Name(href='#', data-type='text', data-pk='#{edititem[0].id_item_info_id}', data-title='اسم الصنف' data-value='#{edititem[0].Name}') #{edititem[0].Name}    
+
+            tr
+              td(width='35%') اســـــم المـــــورد
+              td(width='65%')
+                a#name(href='#', data-type='select', data-pk='#{edititem[0].id_item_info_id}', data-title='اسم المدير' data-value='#{edititem[0].name}') #{edititem[0].name}    
+            tr
+              td(width='35%') الكــمــية الــحالية
+              td(width='65%') 
+                a#quantity(href='#', data-type='text', data-pk='#{edititem[0].iditem}', data-title='الكمية الحالية' data-value='#{edititem[0].quantity}') #{edititem[0].quantity}  
+            tr
+              td(width='35%') الكــمــية الـمتبقية
+              td(width='65%') 
+                a#remainder(href='#', data-type='text', data-pk='#{edititem[0].iditem}', data-title='المتبقي' data-value='#{edititem[0].remainder}') #{edititem[0].remainder}    
+            tr
+              td(width='35%') الـــــوصــــف
+              td(width='65%') 
+                a#description(href='#', data-type='textarea', data-pk='#{edititem[0].iditem}', data-title='وصف الصنف' data-value='#{edititem[0].description}') #{edititem[0].description}    
+    #del.modal.fade(data-width='760',role="dialog",aria-labelledby="myModalLabel", tabindex='-1',aria-hidden="true")
+          .modal-dialog
+            .modal-content
+              .modal-headr.modal-header-danger
+                 p.h1 هل أنت متأكد من  الحدف ؟
+              .modal-footer
+                button#offdelete.btn.btn-danger(type='button',data-dismiss='modal') حذف
+                button.btn.btn-success(data-dismiss='modal', type='button') إلغاء
+    // Placed at the end of the document so the pages load faster
+  script(src='/javascripts/jquery-1.11.1.min.js')    
+  script(src='/javascripts/bootstrap.min.js')
+  script(src='/javascripts/bootstrap-editable.min.js')
+  script(src='/javascripts/edititem.js')
