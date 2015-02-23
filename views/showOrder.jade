@@ -7,192 +7,135 @@ block content
       h3.text-muted.text-left 
         a(href="/")
           img(src="../images/22.png")
-    a.btn.btn-primary.pull-left(type="button", href="/root") رجـــــوع
-    div.panel.panel-default.form-signin 
-      div.panel-heading.text-right
-        h1.panel-title إضافة موظف
-      div.panel-body
-  
-        
-          .col-md-3.col-sm-3.col-xs-3
-            a.btn.btn-success(href='#add', role='button', data-toggle='modal')
-              | إضافة طلب
-
-          .col-md-3.col-sm-3.col-xs-3
-            a.btn.btn-success(href='#te', role='button', data-toggle='modal')
-              | test
-
-
-          table.table.table-condensed
-            tr
-                td إسم السلعة   
-                td الكمية
-                td طلب الموظف
-                td قسم الموظف 
-                td تعديل
-                td الغاء
-            for or in orderinfo
+  .row
+    .col-md-9.col-md-offset-1
+      a.btn.btn-primary.pull-left(type="button", href="/root") رجـــــوع
+      div.panel.panel-default.form-signin 
+        div.panel-heading.text-right
+          h1.panel-title إضــافة طلب
+       
+        div.panel-body
+            .col-md-3.col-sm-3.col-xs-3
+              a.btn.btn-success(href='#add', role='button', data-toggle='modal')
+                | إضافة طلبيات
+        div.panel-body
+            .col-md-3.col-sm-3.col-xs-3
+              a.btn.btn-success(href='#addorder', role='button', data-toggle='modal')
+                | إضافة طلبيات جديد
+          p
+            table.table.table-condensed
               tr
-                td #{or.item}  
-                td #{or.quantity} 
-                td #{or.empe} 
-                td #{or.dep} 
-                td
-                  button#view.btn.btn-primary.btn-xs(data-title='Edit', data-toggle='modal',value="#{or.idorder}", data-target='#edit', data-placement='top', rel='tooltip')
-                    span.glyphicon.glyphicon-eye-open
-                td      
-                  button#delete.btn.btn-danger.btn-xs(href='#del', data-toggle='modal',value="#{or.idorder}")
-                    span.glyphicon.glyphicon-trash 
-         #del.modal.fade(data-width='760',role="dialog",aria-labelledby="myModalLabel", tabindex='-1',aria-hidden="true")
-          .modal-dialog
-            .modal-content
-              .modal-headr.modal-header-danger
-                p.h1 هل انت متاكد من الغاء الطلب ؟
-              .modal-body
-                p.h2 تأكيد الطلب
-                p 
-              .modal-footer
-                button#confdelete.btn.btn-danger(type='button',data-dismiss='modal') حدف
-                button.btn.btn-success(data-dismiss='modal', type='button') إلغاء 
-         #add.modal.fade.bs-example-modal-sm(tabindex='-1', role='dialog', aria-labelledby='mySmallModalLabel', aria-hidden='true')
-          .modal-dialog.modal-sm
-            .modal-content
-              .modal-header
-                button.close(type='button', data-dismiss='modal', aria-label='Close')
-                  span(aria-hidden='true') ×
-                h4#exampleModalLabel.modal-title
-                  | إضافة قسم
-              .modal-body
-                div.panel-body
-                    form#form.form-signin(role="form" , action="/order/saved" , method="post")
-                      div.form-group
-                        lable نوع السلعة 
-                        select.form-control(id="iditem_type",name="iditem_type" )
-                          option(value="-1") نوع السلعة
-                            for d in ord
-                              option(value="#{d.iditem_type}") #{d.type}
-                      div.form-group
-                        lable إسم السـلعة
-                        font(size="4", color="black" , face="cursive" )
-                          select.form-control#getiteme(name="getiteme" )           
-                      div.form-group
-                        lable المتــبقي
-                        input#reminder.form-control(name="reminder",type='text', readonly )
-                      div.form-group
-                      lable  عدد السلع
-                       .input-group
-                          span.input-group-btn
-                            button.btn.btn-danger.btn-number(type='button', data-type='minus', data-field='quant[2]')
-                              span.glyphicon.glyphicon-minus
-                          input#itemCount.form-control.input-number(type='text', name='quant[2]', value='1', min='0', max='')
-                          span.input-group-btn
-                            button.btn.btn-success.btn-number(type='button', data-type='plus', data-field='quant[2]')
-                              span.glyphicon.glyphicon-plus
+                  td رقم الطلبية
+                  td موظف المخازن
+                  td قسم الموظف
+                  td طلب الموظف
+                  td قسم الموظف 
+                  td تاريخ الطلبية
+                  td سلعة 
+                  td تعديل
+                  td إرجاع/الغاء
+
+              for or,num in info1
+                tr
+                  td #{or.idorder}                  
+                  td #{info2[num].em}
+                  td #{info2[num].dee}
+                  td #{or.empe}
+                  td #{or.dep}
+                  td #{or.create_time.getDate()} / #{or.create_time.getMonth()} / #{or.create_time.getFullYear()} 
+                  td
+                    button#item.btn.btn-success.btn-xs(href='#additem',role='button', data-title='Edit', data-toggle='modal',value="#{or.idorder} ", data-target='#additem', data-placement='top', rel='tooltip')
+                      span.glyphicon.glyphicon-plus
+                  td
+                    button#view.btn.btn-primary.btn-xs(data-title='Edit', data-toggle='modal',value="", data-target='#edit', data-placement='top', rel='tooltip')
+                      span.glyphicon.glyphicon-eye-open
+                  td  
+                      if or.accepted == 1 
+                        button#delete.btn.btn-warning.btn-xs(href='#del',value="#{or.idorder}",data-toggle="tooltip" ,data-placement="right" data-original-title="إرجــاع")
+                          span.glyphicon.glyphicon-minus-sign
+                      else
+                        button#delete.btn.btn-danger.btn-xs(href='#del',value="#{or.idorder}",data-toggle="tooltip" ,data-placement="right" data-original-title="إلــغاء")
+                          span.glyphicon.glyphicon-trash
+       
+                 #del.modal.fade(data-width='760',role="dialog",aria-labelledby="myModalLabel", tabindex='-1',aria-hidden="true")
+                  .modal-dialog
+                    .modal-content
+                      .modal-headr.modal-header-danger
+                        p.h1 هل انت متاكد من الغاء الطلب ؟
+                      .modal-body
+                        p.h2 تأكيد الطلب
+                        p 
+                      .modal-footer
+                        button#confdelete.btn.btn-danger(type='button',data-dismiss='modal') حدف
+                        button.btn.btn-success(data-dismiss='modal', type='button') إلغاء 
+        //-     #del.modal.fade(data-width='760',role="dialog",aria-labelledby="myModalLabel", tabindex='-1',aria-hidden="true")
+        //- .modal-dialog
+        //-   .modal-content
+        //-     .modal-headr.modal-header-danger
+        //-       p.h1 هل أنت متأكد من  حدف ؟
+        //-     .modal-body
+        //-       p.h2 هل انت متأكد 
+        //-       p 
+        //-     .modal-footer
+        //-       button#confdelete.btn.btn-danger(type='button',data-dismiss='modal') حدف
+        //-       button.btn.btn-success(data-dismiss='modal', type='button') إلغاء 
+   #add.modal.fade.bs-example-modal-sm(tabindex='-1', role='dialog', aria-labelledby='mySmallModalLabel', aria-hidden='true')
+    .modal-dialog.modal-md
+      .modal-content
+        .modal-header.modal-header-success
+          button.close(type='button', data-dismiss='modal', aria-label='Close')
+            span(aria-hidden='true') ×
+          h4#exampleModalLabel.modal-title
+            | إضافة قسم
+        .modal-body
+          
+  #addorder.modal.fade.bs-example-modal-sm(tabindex='-1', role='dialog', aria-labelledby='mySmallModalLabel', aria-hidden='true')
+    .modal-dialog.modal-md
+      .modal-content
+        .modal-header.modal-header-success
+          button.close(type='button', data-dismiss='modal', aria-label='Close')
+            span(aria-hidden='true') ×
+          h4#exampleModalLabel.modal-title
+            | إضاف طلب
+        .modal-body
+          div.panel-body
+              form#form.form-signin(role="form" , action="/order/saved" , method="post")
+                .row
+                  .col-md-11
+                    div.form.group
+                      lable طلب القسم
+                      font(size="4", color="black" , face="cursive" )
+                        select.form-control#department(name ="department")
+                          option(value="") طلب القسم
+                          for empl in emp
+                            option(value="#{empl.iddepartments}") #{empl.name} 
+              
+                .row
+                  .col-md-6
+                    div.form-group
+                      lable طلب الموظف
                       p
-                      div.form-group
-                        lable طلب القسم
-                        font(size="4", color="black" , face="cursive" )
-                          select.form-control#department(name ="department")
-                            option(value="") طلب القسم
-                            for empl in emp
-                              option(value="#{empl.iddepartments}") #{empl.name} 
+                        select(name="employee",id="empl" , multiple='' style="width: 200px; height: 200px;") 
+                  div.form-group.col-md-6
+                    lable وصــف الطلب
+                    textarea#textarea(name='textarea' ,style='width: 200px; height:200px' ,required title="عفوا عليك تعبئة الوصف لهذا الطلب")          
+                .row
+                  .col-md-offset-4
+                    div.form-group
+                      button#save.btn.btn-md.btn-primary(type="submit" , style='width: 200px;') إضافة
+            
+  
 
-                        div.form-group
-                        lable طلب الموظف
-                        p
-                        p
-                          select(name="employee",id="empl" , multiple='' style="width: 200px;")
-                        
-                        div.form-group
-                        lable تأكيد الطلب
-                          input(type='checkbox', name='confirm', value='1')
-                        
-                        
-
-                         div.form-group
-                         p
-                         lable وصــف الطلب
-                         p
-                           // validation with jade
-                           textarea#textarea(name='textarea' ,style='width: 200px; height:200px' ,required title="عفوا عليك تعبئة الوصف لهذا الطلب")          
-                        p          
-                          div.form-group.text-left
-                           button#save.btn.btn-lg.btn-primary(type="submit" , style='width: 200px;') إضافة
-
-
-         #te.modal.fade.bs-example-modal-sm(tabindex='-1', role='dialog', aria-labelledby='mySmallModalLabel', aria-hidden='true')
-
-          .modal-dialog
-            .modal-content
-              .modal-header
-                button.close(type='button', data-dismiss='modal', aria-label='Close')
-                  span(aria-hidden='true') ×
-                h4.modal-title Modal title
-              .modal-body
-                  button.close(type='button', data-dismiss='modal', aria-label='Close')
-                  span(aria-hidden='true') ×
-                h4#exampleModalLabel.modal-title
-                  | إضافة قسم
-              .modal-body
-                div.panel-body
-                    form#form.form-signin(role="form" , action="/order/saved" , method="post")
-                      div.form-group
-                        lable نوع السلعة 
-                        select.form-control(id="iditem_type",name="iditem_type" )
-                          option(value="-1") نوع السلعة
-                            for d in ord
-                              option(value="#{d.iditem_type}") #{d.type}
-                      div.form-group
-                        lable إسم السـلعة
-                        font(size="4", color="black" , face="cursive" )
-                          select.form-control#getiteme(name="getiteme" )           
-                      div.form-group
-                        lable المتــبقي
-                        input#reminder.form-control(name="reminder",type='text', readonly )
-                      div.form-group
-                      lable  عدد السلع
-                       .input-group
-                          span.input-group-btn
-                            button.btn.btn-danger.btn-number(type='button', data-type='minus', data-field='quant[2]')
-                              span.glyphicon.glyphicon-minus
-                          input#itemCount.form-control.input-number(type='text', name='quant[2]', value='1', min='0', max='')
-                          span.input-group-btn
-                            button.btn.btn-success.btn-number(type='button', data-type='plus', data-field='quant[2]')
-                              span.glyphicon.glyphicon-plus
-                      p
-                      div.form-group
-                        lable طلب القسم
-                        font(size="4", color="black" , face="cursive" )
-                          select.form-control#department(name ="department")
-                            option(value="") طلب القسم
-                            for empl in emp
-                              option(value="#{empl.iddepartments}") #{empl.name} 
-
-                        div.form-group
-                        lable طلب الموظف
-                        p
-                        p
-                          select(name="employee",id="empl" , multiple='' style="width: 200px;")
-                        
-                        div.form-group
-                        lable تأكيد الطلب
-                          input(type='checkbox', name='confirm', value='1')
-                        
-                        
-
-                         div.form-group
-                         p
-                         lable وصــف الطلب
-                         p
-                           // validation with jade
-                           textarea#textarea(name='textarea' ,style='width: 200px; height:200px' ,required title="عفوا عليك تعبئة الوصف لهذا الطلب")          
-                        p          
-                          div.form-group.text-left
-                           button#save.btn.btn-lg.btn-primary(type="submit" , style='width: 200px;') إضافة
-                p One fine body…
-              .modal-footer
-
-                
+   #additem.modal.fade.bs-example-modal-sm(tabindex='-1', role='dialog', aria-labelledby='mySmallModalLabel', aria-hidden='true')
+    .modal-dialog.modal-md
+      .modal-content
+        .modal-header.modal-header-success
+          button.close(type='button', data-dismiss='modal', aria-label='Close')
+            span(aria-hidden='true') ×
+          h4#exampleModalLabel.modal-title
+            | إضـافة سلعة
+        .modal-body
+          div.panel-body
 
 
 
@@ -202,5 +145,5 @@ block content
   script(src="/javascripts/jquery-1.11.1.min.js") 
   script(src="/javascripts/bootstrap.min.js")
   script(src="/javascripts/jquery.validate.min.js")
-  script(src="/javascripts/bootstrap-datetimepicker.fr.js")
+  //script(src="/javascripts/bootstrap-datetimepicker.fr.js")
   script(src="/javascripts/showOrder.js")

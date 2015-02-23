@@ -12,7 +12,6 @@ block content
       div.panel-heading.text-right
         h1.panel-title إضافة موظف
       div.panel-body
- 
         div(role="tabpanel")
           ul.nav.nav-tabs(role="tablist")
             li.active(role="presentation")
@@ -28,35 +27,27 @@ block content
                     td طلب الموظف
                     td قسم الموظف    
                     td تأكيد الطلب
+                for a in accep 
                   tr
-                    td hi 
-                    td hellow
-                    td go
-                    td see  
-                    td    
+                    td #{a.item}  
+                    td #{a.quantity} 
+                    td #{a.empe} 
+                    td #{a.dep}  
+                    td 
 
-                      button#delete.btn.btn-success.btn-xs(href='#del', data-toggle='modal',value="")
+                      button#delete.btn.btn-success.btn-xs(href='#del', data-toggle='modal',value="#{a.idorder}")
                         span.glyphicon.glyphicon-ok
              #del.modal.fade(data-width='760',role="dialog",aria-labelledby="myModalLabel", tabindex='-1',aria-hidden="true")
               .modal-dialog
                 .modal-content
                   .modal-headr.modal-header-danger
-                    p.h1 هل انت متاكد من الغاء الطلب ؟
+                    p.h1 هل حقا تريد تأكيد الطلب ؟
                   .modal-body
                     p.h2 تأكيد الطلب
                     p 
                   .modal-footer
-                    button#confdelete.btn.btn-danger(type='button',data-dismiss='modal') حدف
-                    button.btn.btn-success(data-dismiss='modal', type='button') إلغاء 
-            
-
-
-
-
-
-
-
-
+                    button#confdelete.btn.btn-success(type='button',data-dismiss='modal') تأكيد
+                    button.btn.btn-danger(data-dismiss='modal', type='button') إلغاء 
             div.tab-pane(role="tabpanel", id="profile") this is the Profile
 
 
