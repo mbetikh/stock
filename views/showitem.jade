@@ -1,0 +1,49 @@
+extends layout
+block content
+  div.container
+    div.header
+      ul.nav.nav-pills.pull-right
+      h3.text-muted.text-left 
+        a(href="/")
+          img.img-responsive(src="../../images/22.png" ,style='width: 150px;')
+    a.btn.btn-primary.pull-left(type="button", href="/item") رجـــــوع
+    div.panel.panel-default.form-signin 
+      div.panel-heading.text-right
+        h1.panel-title الاصناف
+      table.table.table-condensed
+        tr
+            td نوع الصنف 
+            td الكمية
+            td الكمية الموجودة
+            td تاريخ الادخال
+            td تعديل
+            td مسح 
+
+        for i in itemo
+            tr
+                td #{i.Name} 
+                td #{i.quantity}
+                td #{i.remainder}
+                td #{i.create_time.getDate()} / #{i.create_time.getMonth()} / #{i.create_time.getFullYear()}
+                td 
+                  button#view.btn.btn-primary.btn-xs(data-title='Edit', data-toggle='modal',value="#{i.iditem}", data-target='#edit', data-placement='top', rel='tooltip')
+                    span.glyphicon.glyphicon-eye-open    
+                td      
+                  button#delete.btn.btn-danger.btn-xs(href='#del', data-toggle='modal',value="#{i.iditem}")
+                    span.glyphicon.glyphicon-trash 
+   #del.modal.fade(data-width='760',role="dialog",aria-labelledby="myModalLabel", tabindex='-1',aria-hidden="true")
+    .modal-dialog
+      .modal-content
+        .modal-headr.modal-header-danger
+          p.h1 هل أنت متأكد من  حدف ؟
+        .modal-body
+          p.h2 هل انت متأكد 
+          p 
+        .modal-footer
+          button#confdelete.btn.btn-danger(type='button',data-dismiss='modal') حدف
+          button.btn.btn-success(data-dismiss='modal', type='button') إلغاء 
+    // Placed at the end of the document so the pages load faster
+  script(src='/javascripts/jquery-1.11.1.min.js')    
+  script(src='/javascripts/bootstrap.min.js')
+  script(src='/javascripts/item.js')
+  script(src='/javascripts/edititem.js')

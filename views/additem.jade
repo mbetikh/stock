@@ -1,86 +1,82 @@
 extends layout
 block content
-  nav.navbar.navbar-default.navbar-fixed-top
-    .container
-        .navbar-header
-          button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='#navbar', aria-expanded='false', aria-controls='navbar')
-            span.sr-only Toggle navigation         
-            span.icon-bar
-            span.icon-bar 
-            span.icon-bar
-          a.navbar-brand(href='#') Stock
-        #navbar.navbar-collapse.collapse
-          ul.nav.navbar-nav
-            li.active
-              a(href='#') Home
-            li
-              a(href='#about') About
-            li
-              a(href='#contact') Contact
-            li.dropdown
-              a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-expanded='false') Dropdown 
-                span.caret    
-              ul.dropdown-menu(role='menu')
-                li
-                  a(href='#') Action        
-                li
-                  a(href='#') Another action
-                li
-                  a(href='#') Something else heree
-                li.divider
-                li.dropdown-header Nav header        
-                li
-                  a(href='#') Separated link
-                li
-                  a(href='#') One more separated link
-  .container
-    .jumbotron
-    .col-md-9.col-sm-9.col-xs-9
-        | إضافة مجلد
-    table.table.table-condensed
-      tr
-          td نوع الصنف 
-          td اضافة صنف جديد
-          td 
-          td 
-      for dept in dep
-        tr
-          td #{dept.type}
-          td   
-          td
-            button#view.btn.btn-primary.btn-xs(data-title='Edit', data-toggle='modal',value="#{dept.iddepartments}", data-target='#edit', data-placement='top', rel='tooltip')
-              span.glyphicon.glyphicon-eye-open
-          td      
-            button#delete.btn.btn-danger.btn-xs(href='#del', data-toggle='modal',value="#{dept.iddepartments}")
-              span.glyphicon.glyphicon-trash 
-   #del.modal.fade(data-width='760',role="dialog",aria-labelledby="myModalLabel", tabindex='-1',aria-hidden="true")
-    .modal-dialog
-      .modal-content
-        .modal-headr.modal-header-danger
-          p.h1 هل أنت متأكد من  حدف ؟
-        .modal-body
-          p.h2 هل انت متأكد 
-          p 
-        .modal-footer
-          button#confdelete.btn.btn-danger(type='button',data-dismiss='modal') حدف
-          button.btn.btn-success(data-dismiss='modal', type='button') إلغاء 
-   #add.modal.fade.bs-example-modal-sm(tabindex='-1', role='dialog', aria-labelledby='mySmallModalLabel', aria-hidden='true')
-    .modal-dialog.modal-sm
-      .modal-content
-        .modal-header
-          button.close(type='button', data-dismiss='modal', aria-label='Close')
-            span(aria-hidden='true') ×
-          h4#exampleModalLabel.modal-title
-            | إضافة قسم
-        .modal-body
-          form#form(role='form', action='/department/add/', method='post')
-            input(type='hidden', name='dept_id', value='')
-            .form-group
-              input#name.form-control.input-sm(type='text', name='name', placeholder='اسم القسم', value='')
-            input.btn.btn-primary.btn-block(type='submit', value='إضـــــافة')
+  div.container
+    div.header
+      ul.nav.nav-pills.pull-right
+      h3.text-muted.text-left 
+        a(href="/")
+          img.img-responsive(src="../../images/22.png" ,style='width: 150px;')
+    a.btn.btn-primary.pull-left(type="button", href="/item") رجـــــوع
+    div.panel.panel-default.form-signin 
+      div.panel-heading.text-right
+        h1.panel-title اضافة صنف
+      div.panel-body
+        form#form.form-signin(role="form" , action="/item/additem", method="post")
+          row 
+            div.form.group.col-xs-6
+              select.form-control#iditem_type(name="id_item_info_id")
+                option(value="-1", selected="selected") اختر نوع الصنف
+                  for d in item
+                    option(value="#{d.item_info_id}",name="id_item_info_id") #{d.Name} 
+              
+            div.form.group.col-xs-6 
+              a.btn.btn-success(href='#newitem', role='button',data-toggle='modal',style='width: 200px;') صنف جديد    
+                span.glyphicon.glyphicon-plus 
+          row 
+            div.form-group.col-xs-8
+              label 
+              select.form-control#getiteme(name="getiteme")
+                option(value="-1", selected="selected") اختر المورد   
+            div.form-group.col-xs-2
+              label
+              a.btn.btn-success(href='/supplier/addSupplier', role='button') مورد جديد 
+                span.glyphicon.glyphicon-plus    
+            div.form-group.col-xs-2
+              label
+              a#newsupp.btn.btn-success(href='#', role='button' ,value = "1",name = "bb") الموردين 
+                span.glyphicon.glyphicon-plus
+          row
+            div.form-group.form-group.col-xs-12
+              lable الكمية
+              input#quantity.form-control.text-left(dir="ltr", type="text",name="quantity", placeholder=" ",required="")
+            //- div.form-group.form-group.col-xs-6
+            //-   //- lable المتبقي
+              //- input#remainder.form-control.text-left(dir="ltr", type="text",name="remainder", placeholder=" ",required="")
+          row
+            div.form-group.form-group.col-xs-12
+              lable الوصف
+              textarea#description.form-control(rows='3',dir="ltr", name="description", placeholder=" ",required="")
+          div.form-group
+            //- lable الرئيسي
+            input#dele.form-control.text-left(dir="ltr", type="hidden",name="item_type_iditem_type", placeholder=" ",required="",value="#{id}")
+          //Select for choose manager of constituencies 
+          row 
+            div.form-group.text-center.col-md-6.col-md-offset-3
+              button.btn.btn-lg.btn-primary(type="submit") إضافة
+          #newitem.modal.fade(data-width='760',role="dialog",aria-labelledby="myModalLabel", tabindex='-1',aria-hidden="true")
+            .modal-dialog
+              .modal-content
+                .modal-headr.modal-header-success
+                  button.btn.pull-left.btn-danger(data-dismiss='modal', type='button') إلغاء
+                  button.close(type="button",data-dismiss="modal",aria-hidden="true")
+                  h1 أضافة صنف جديد 
+                .row
+                  .col-sm-12.col-md-11.col.col-md.offset-4
+                      .modal-body
+                          form#form.form-signin(role="form" , action="#", method="post") 
+                            div.form-group
+                              lable.h3 اسم الصنف  
+                              input#Name.form-control(type="text",name="Name", placeholder="اسم الصنف",autofocus="")                            
+                            div.form-group
+                              lable.h3 الرقم التسلسلي
+                              input#Barcode.form-control(type="text",name="Barcode", placeholder="الرقم التسلسلي",autofocus="")
+                            div.form-group.text-center
+                              button#Eitem.btn.btn-lg.btn-primary(type="button",aria-hidden="true",data-dismiss="modal") إضـافة         
 
-
-    // Placed at the end of the document so the pages load faster
+  // Placed at the end of the document so the pages load faster
   script(src='/javascripts/jquery-1.11.1.min.js')    
   script(src='/javascripts/bootstrap.min.js')
-  script(src='/javascripts/department.js')
+  script(src='/javascripts/bootstrap-editable.min.js')
+  script(src='/javascripts/item.js')
+  
+

@@ -12,6 +12,7 @@ var department = require('./routes/department');
 var employee = require('./routes/employee');
 var supplier = require('./routes/supplier');
 var order = require('./routes/order');
+var item = require('./routes/item');
 var passport = require('passport');
 var app = express();
 
@@ -34,6 +35,8 @@ app.use('/users', users);
 app.use('/stock',stock);
 app.use('/department',department);
 app.use('/employee',employee);
+app.use('/order',order);
+app.use('/item',item);
 app.use('/supplier',supplier);
 app.use('/addSupplier',supplier);
 app.use('/order',order); 
