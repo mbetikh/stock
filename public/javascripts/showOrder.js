@@ -1,5 +1,19 @@
 $(document).ready(function(){
 
+$('body').on('click', '#editData', function () {
+    window.location.href='/order/editOrder/'+$(this).val();
+  });
+
+
+
+$('body').on('click', '#show', function () {
+  window.location.href='/order/viewOrderItem/'+$(this).val();
+  });
+
+    $('[data-toggle="tooltip"]').tooltip();   
+
+
+
   $("#form").validate({
 
     rules : {
@@ -10,8 +24,6 @@ $(document).ready(function(){
         required: true,
       }
     },
-    
-
     messages: {
       iditem_type: {
         required: "الرجاء إدخال نوع السلعة",
@@ -33,55 +45,9 @@ $(document).ready(function(){
  
   }); 
 
-
-$('body').on('click', '#delete', function () {
-    $('#confdelete').val($(this).val());
-  });
-  
-  $('body').on('click', '#confdelete', function () {
-
-    $.get('/order/delete/'+$(this).val(),function(result){
-      window.location.href='/order/showOrder';
-  })
-  });
-
-  $("#iditem_type").on("change", function () {
+       $("#department").on("change", function () {
     var id = $(this).val();
-    $('#getiteme').empty();
-   // alert(id);
-    if(id!=-1){
-      $.get('/order/getitem/'+id,function(result){ 
-        //option(value="-1", selected="selected")
-        $('#getiteme').append("<option value = '"+""+"'  >"+"إسم السلــعة"+"</option>");
-
-        for ( var i = 0; i < result.length;  i++ ) {
-
-          $('#getiteme').append("<option value = '"+result[i].iditem+"'>"+result[i].name+"</option>");
-        }
-    //input#reminder.form-control(type='text', name='phoneNumber',placeholder="المتـبقي" , style='width: 200px;',value="hellow world")
-      });
-    }
-  });
-
-
-  $("#getiteme").on("change", function () {
-    var id = $(this).val();
-    //var name=$(this).name();
-
-    if(id!=-1){
-      $.get('/order/getreminder/'+id,function(result){ 
-        //alert(result[0].remainder)
-        $('#reminder').val(result[0].remainder);
-        $('#itemCount').attr('value',0);
-        $('#itemCount').val(0);
-        $('#itemCount').attr('max',result[0].remainder);
-      });
-    }
-
-  });
-
-    $("#department").on("change", function () {
-    var id = $(this).val();
+    
     $('#empl').empty();
     if(id != "")
     {
@@ -94,14 +60,88 @@ $('body').on('click', '#delete', function () {
         // alert(result[i].name);
           $('#empl').append("<option value = '"+result[i].idemployee+"'>"+result[i].name+"</option>");
         }
-
-    
     });
 
    // alert("id : "+id);
     }
+  });
+
+
+  $('body').on('click', '#delete1', function () {
+   $('#confdelete').val($(this).val());
+  });
+  
+  $('body').on('click', '#confdelete', function () {
+    $.get('/order/deleteOrderAccepted/'+$(this).val(),function(result){
+     window.location.href='/order/showOrder';
+     });
+  });
+
+ $('body').on('click', '#delete2', function () {
+
+   $('#confback').val($(this).val());
+  });
+  
+  $('body').on('click', '#confback', function () {
+    $.get('/order/deleteOrderNotAccepted/'+$(this).val(),function(result){
+     window.location.href='/order/showOrder';
+     });
+  });
+
+
+$('body').on('click','#item', function () {
+  //alert($(this).val());
+  //  $('#confdelete').val($(this).val());
+  $('#idorder').val($(this).val());
+  });
+  
+ 
+  
+
+  $("#iditem_type").on("change", function () {
+    var id = $(this).val();
+   // alert(id);
+    $('#getiteme').empty();
+   // alert(id);
+    if(id!=-1){
+      $.get('/order/getitem/'+id,function(result){ 
+        //option(value="-1", selected="selected")
+        $('#getiteme').append("<option value = '"+""+"'  >"+"إسم السلــعة"+"</option>");
+
+        for ( var i = 0; i < result.length;  i++ ) {
+          //alert(result[i].iditem);
+          $('#getiteme').append("<option value = '"+result[i].item_info_id+"'>"+result[i].name+"</option>");
+        }
+    //input#reminder.form-control(type='text', name='phoneNumber',placeholder="المتـبقي" , style='width: 200px;',value="hellow world")
+      });
+    }
+  });
+
+  $("#getiteme").on("change", function () {
+   
+  var f = $(idorder).val(); 
+ // alert(f);
+   var id = $(this).val();  
+    if(id!=-1){
+      $.get('/order/getreminder/'+id +'/'+f,function(result){ 
+       $('#reminder').val(result[0][0].remainder);
+       if(result[1][0] !=  undefined)
+       {
+   //  alert("true");
+     
+       }
+       else
+       {
+     //  alert("false");
+
+
+       }
+      });
+    }
 
   });
+
+
 
 
 
@@ -180,7 +220,34 @@ $(".input-number").keydown(function (e) {
         if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
           e.preventDefault();
         }
+
+
+
+
+
+
+
       });
+
+
+// code for table viewOrderItem
+$("#mytable #checkall").click(function () {
+        if ($("#mytable #checkall").is(':checked')) {
+            $("#mytable input[type=checkbox]").each(function () {
+                $(this).prop("checked", true);
+            });
+
+        } else {
+            $("#mytable input[type=checkbox]").each(function () {
+                $(this).prop("checked", false);
+            });
+        }
+    });
+    
+    $("[data-toggle=tooltip]").tooltip();
+
+
+
 
 
 

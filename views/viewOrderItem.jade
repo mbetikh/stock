@@ -1,0 +1,144 @@
+extends layout
+block content
+  body
+    link(href='http://fonts.googleapis.com/css?family=Arimo:400', rel='stylesheet')
+    a.menu-bar(data-toggle='collapse', href='#menu')
+      span.bars
+    #menu.collapse.menu
+      ul.list-inline
+        lh موظف المخازن: 
+        lh #{info[0].emm}
+      ul.list-inline
+        lh طلب الموظف : 
+        lh #{info[0].empe} 
+      ul.list-inline
+        lh قسم الموظف الطالب : 
+        lh #{info[0].dep} 
+      ul.list-inline
+        lh تاريخ الطلب : 
+        lh  #{info[0].create_time.getDate()} / #{info[0].create_time.getMonth()} / #{info[0].create_time.getFullYear()} 
+      ul.list-inline
+        lh الوصف : 
+        lh #{info[0].discription} 
+      if info[0].accepted ==1
+        ul.list-inline
+          lh الطلبية م}كدة
+      else
+        ul.list-inline
+          lh الطلبية غير مؤكدة    
+    .container
+      .row
+        h2.text-center عرض معلومـــات الطلب
+   .row
+  .col-xs-10.col-xs-offset-1
+    a.btn.btn-primary.pull-left(type="button", href="/root") رجـــــوع
+    div.panel.panel-default.form-signin 
+      div.panel-heading.text-right
+        h1.panel-title عرض السلع
+      div.panel-body
+          .col-xs-3.col-xs-3.col-xs-3
+          .container
+            .row
+              .col-md-12
+                .table-responsive
+                  table#mytable.table.table-bordred.table-striped
+                    thead
+                      th عدد السلع
+                      th إسم السلعة
+                      th رقم التسلسلي
+                      th الكمـية
+                      th الوصـف
+                     for io,f in item
+                        tr
+                            td  #{f+1}
+                            td #{io.name}
+                            td #{io.Barcode}
+                            td #{io.quantity}
+                            td #{io.description}
+                            td
+                              p(data-placement='top', data-toggle='tooltip', title='Edit')
+                                button.btn.btn-primary.btn-xs(data-title='Edit', data-toggle='modal', data-target='#edit')
+                                  span.glyphicon.glyphicon-pencil
+                            td
+                              p(data-placement='top', data-toggle='tooltip', title='Delete')
+                                button.btn.btn-danger.btn-xs(data-title='Delete', data-toggle='modal', data-target='#delete')
+                                  span.glyphicon.glyphicon-trash
+          
+                  
+                 
+                    
+                  .clearfix
+                  ul.pagination.pull-right
+                    li.disabled
+                      a(href='#')
+                        span.glyphicon.glyphicon-chevron-left
+                    li.active
+                      a(href='#') 1
+                    li
+                      a(href='#') 2
+                    li
+                      a(href='#') 3
+                    li
+                      a(href='#') 4
+                    li
+                      a(href='#') 5
+                    li
+                      a(href='#')
+                        span.glyphicon.glyphicon-chevron-right
+          #edit.modal.fade(tabindex='-1', role='dialog', aria-labelledby='edit', aria-hidden='true')
+            .modal-dialog
+              .modal-content
+                .modal-header
+                  button.close(type='button', data-dismiss='modal', aria-hidden='true')
+                    span.glyphicon.glyphicon-remove(aria-hidden='true')
+                  h4#Heading.modal-title.custom_align Edit Your Detail
+                .modal-body
+                  .form-group
+                    input.form-control(type='text', placeholder='Mohsin')
+                  .form-group
+                    input.form-control(type='text', placeholder='Irshad')
+                  .form-group
+                    textarea.form-control(rows='2', placeholder='CB 106/107 Street # 11 Wah Cantt Islamabad Pakistan')
+                .modal-footer
+                  button.btn.btn-warning.btn-lg(type='button', style='width: 100%;')
+                    span.glyphicon.glyphicon-ok-sign
+                    |  Update
+              // /.modal-content
+            // /.modal-dialog
+          #delete.modal.fade(tabindex='-1', role='dialog', aria-labelledby='edit', aria-hidden='true')
+            .modal-dialog
+              .modal-content
+                .modal-header
+                  button.close(type='button', data-dismiss='modal', aria-hidden='true')
+                    span.glyphicon.glyphicon-remove(aria-hidden='true')
+                  h4#Heading.modal-title.custom_align مسح السلعة
+                .modal-body
+                  .alert.alert-danger
+                    span.glyphicon.glyphicon-warning-sign
+                    |  هل أنت متأكد من مسح هذه  السلعة ؟
+                .modal-footer
+                  button.btn.btn-success(type='button')
+                    span.glyphicon.glyphicon-ok-sign
+                    |  Yes
+                  button.btn.btn-default(type='button', data-dismiss='modal')
+                    span.glyphicon.glyphicon-remove
+                    |  No
+              // /.modal-content
+            // /.modal-dialog
+
+
+
+
+         
+
+
+
+
+ 
+
+
+  script(src="/javascripts/jquery-1.11.1.min.js") 
+  script(src="/javascripts/bootstrap.min.js")
+  script(src="/javascripts/jquery.validate.min.js")
+  //script(src="/javascripts/bootstrap-datetimepicker.fr.js")
+  script(src="/javascripts/showOrder.js")
