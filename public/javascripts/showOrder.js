@@ -14,6 +14,7 @@ $('body').on('click', '#show', function () {
 
 
 
+
   $("#form").validate({
 
     rules : {
@@ -66,6 +67,20 @@ $('body').on('click', '#show', function () {
     }
   });
 
+
+
+  $('body').on('click', '#deleteId', function () {
+       $('#deleteM').val($(this).val());
+  });
+
+ $('body').on('click', '#deleteM', function () {
+  //alert($(this).val());
+     $.get('/order/deleteItem/'+$(this).val(),function(result){
+    //  alert(result);
+      window.location.href='/order/viewOrderItem/'+result;
+
+     });
+  });
 
   $('body').on('click', '#delete1', function () {
    $('#confdelete').val($(this).val());
@@ -127,26 +142,19 @@ $('body').on('click','#item', function () {
        $('#reminder').val(result[0][0].remainder);
        if(result[1][0] !=  undefined)
        {
-   //  alert("true");
-     
+    // alert("true");
+      document.getElementById("textar").disabled = true;s 
        }
        else
        {
-     //  alert("false");
-
-
+  //    alert("false");
+       document.getElementById("textar").disabled = false;
        }
       });
     }
 
   });
 
-
-
-
-
-
- 
 
 //plugin bootstrap minus and plus
 //http://jsfiddle.net/laelitenetwork/puJ6G/

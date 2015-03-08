@@ -83,13 +83,12 @@
                   var pageCount = user.getPageCount(resultz[1][0].cnt); 
                   var pagination = user.paginate(page,pageCount);
                  res.render('showOrder',{title: 'أضافة موظف',ord:result,ordd:result2,emp:result3,info1:resultz[0],pagination:pagination});
-                      }
-                     });
-           
-                     });
-                   });
-                   });    
-                 });
+    }
+  });          
+});
+});
+});    
+});
 
   
     router.get('/viewOrderItem/:id', function(req,res){
@@ -132,6 +131,22 @@
             orderMgr.deleteOrderAccepted(req.params.id,function(result){
             res.send(result);
            });  
+        });
+
+
+           router.get('/deleteItem/:id', function(req,res){
+           // console.log(req.params.id);
+              var sp=req.params.id
+              var n = sp.indexOf(" ");
+              var id=sp.slice(0,n); 
+              var two_number=sp.slice(n+1,req.params.id.length); 
+              var nn=two_number.indexOf(" ");
+              var accepted=two_number.slice(0,nn);
+              var idorder=two_number.slice(nn+1,two_number.length);
+              orderMgr.deleteItem(id,accepted,idorder,function(result,id){
+            //  console.log(id);
+              res.send(id);
+             });  
         });
 
         

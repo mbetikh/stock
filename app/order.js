@@ -7,9 +7,9 @@
   
 
   getItemInOrder  : function(id,cb){
-
+       
         mysqlMgr.connect(function (conn) {
-            conn.query('select name,Barcode,quantity,description from item_info,order_has_item where iditem=item_info_id and idorder= ?',id,function(err, result1) {
+            conn.query('select id,name,Barcode,quantity,description from item_info,order_has_item where iditem=item_info_id   and idorder= ?',id,function(err, result1) {
             conn.release();
           if(err) {
              util.log(err);
@@ -18,6 +18,38 @@
               cb(result1);
             }
            });
+        });
+
+      },
+
+// delete item if accepted or not accepted
+      deleteItem: function(id,accepted,idorder,cb){
+       
+        mysqlMgr.connect(function (conn) {
+          if(accepted==0)
+          {
+            conn.query('DELETE FROM `order_has_item`  where id=? and idorder=?',[id,idorder],function(err, result1) {
+            // find error in sql 
+            if(err) {
+             util.log(err); 
+         } else {
+              cb(result1,idorder);
+            }
+
+
+          });
+       }
+
+
+            else{
+              // delete with mines reminder
+
+         
+
+            }
+            conn.release();
+          
+          
         });
 
       },
@@ -245,11 +277,11 @@ getorder :function(id,cb){
     mysqlMgr.connect(function (conn) {
   //console.log(iditem);
   conn.query('SELECT id,quantity FROM `order_has_item` where iditem =? and idorder=?',[iditemm,idorder],function(err,result) {  
-  
+ 
   if(result[0] == undefined)
   {
     // normal insert
-    console.log(idorder);
+   console.log("Undefind");
      conn.query('INSERT INTO `order_has_item`(`quantity`,`iditem`, `idorder`,`description`) VALUES (?,?,?,?)',[quantity,iditemm,idorder,description],function(err,result) {  
       if(err) {
         util.log(err);
@@ -261,12 +293,11 @@ getorder :function(id,cb){
   }
   else
   {
+
    // console.log(result[0].id);
      var k=result[0].quantity;
      var z =parseInt(k)+parseInt(quantity);
-     console.log(k);
-      console.log(quantity);
-       console.log(z);
+   console.log("Up");
     conn.query('UPDATE `order_has_item` SET quantity=? where  id =?',[z,result[0].id],function(err,result) {  
       if(err) {
         util.log(err);
@@ -274,6 +305,8 @@ getorder :function(id,cb){
 
       });
   }
+
+
 
   conn.release();
     // console.log("id >"+result.id);
