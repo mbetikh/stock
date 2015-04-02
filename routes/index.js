@@ -10,7 +10,9 @@ router.get('/', function(req, res) {
 router.get('/login', function(req,res){
   res.render('login',{title: 'دخول'});
 });
-
+router.get('/test', function(req,res){
+  res.render('test',{title: 'دخول'});
+});
 router.get('/enterTest', function(req,res){
   res.render('enterTest',{title: 'test'});
 });

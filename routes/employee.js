@@ -8,7 +8,7 @@ var express = require('express'),
 
 router.get('/',userHelpers.isRoot, function(req, res){
   employeeMgr.getEmployee(function(result){
-    res.render('employee',{title: 'الاقسام',emp:result});
+    res.render('employee',{title: 'الموظفين',emp:result});
   });
 });
 
@@ -52,6 +52,12 @@ router.post('/addEmployeee', function(req,res){
   userHelpers.addUser(req.body,function(result){
     res.redirect('/employee');
   });
+});
+
+router.get('/searchEmployee/:id', function(req, res) {
+  employeeMgr.searchEmployee(req.params.id,function(result){
+    res.send(result);
+  })
 });
 
 router.get('/editEmployee/:id', function(req,res){

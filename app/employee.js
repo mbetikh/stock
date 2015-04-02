@@ -15,7 +15,19 @@ exports.employeeMgr = {
       });
     });
   },
-
+  searchEmployee : function(name,cb){
+    name = name+"%";
+    mysqlMgr.connect(function (conn) {
+        conn.query('SELECT e.idemployee , e.name empname , e.email , e.phoneNumber , e.username ,e.password , e.level , d.name dname  FROM `employee` `e`,`department` `d` where e.deleted = 1 and `e`.`iddepartment` = `d`.`iddepartments` and `e`.`name` LIKE ? ' ,[name], function(err, result) {
+            conn.release();
+            if(err) {
+              util.log(err);
+            } else {
+              cb(result);
+            } 
+        });
+    });
+  },
   addEmployee: function(body,cb){
     mysqlMgr.connect(function (conn) {
       conn.query('INSERT INTO `employee` SET ?', body,  function(err, result) {    

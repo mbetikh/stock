@@ -51,16 +51,6 @@
       }
       
      });
-    $('#password').editable({
-      url: '/employee/edit',
-      type: 'text',
-      pk: 1,
-      name: 'password',
-      title: 'Enter password',
-      success: function (res, newValue){
-        return res.msg;
-      }    
-    });
     $('#level').editable({
     url: '/employee/edit',
     source:[
